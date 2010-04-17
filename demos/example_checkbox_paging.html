@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Save checkbox status in paginal grid - Sigma Ajax data grid control sample</title>
+<meta http-equiv="Content-Language" content="en-us" /> 
+<meta name="keywords" content="dhtml grid, AJAX grid, paginal grid, checkbox status saving" >
+<meta name="description" content="How to save checkbox status in paginal grid" >
+
+<script src="highlight/jssc3.js" type="text/javascript"></script>
+<link href="highlight/style.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css" media="all">@import "./css/doc_no_left.css";</style>
+<script src="../../../js/menu.js" type="text/javascript"></script>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="../grid/calendar/calendar-blue.css"  />
+<script type="text/javascript" src="../grid/calendar/calendar.js"></script>
+<script type="text/javascript" src="../grid/calendar/calendar-cn-utf8.js"></script>
+<script type="text/javascript" src="../grid/calendar/calendar-setup.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../grid/gt_grid.css" />
+<link rel="stylesheet" type="text/css" href="../grid/skin/vista/skinstyle.css" />
+<script type="text/javascript" src="./data/test_data.js"></script>
+<script type="text/javascript" src="../grid/gt_msg_en.js"></script>
+<script type="text/javascript" src="../grid/gt_const.js"></script>
+<script type="text/javascript" src="../grid/gt_grid_all.js"></script>
+<script type="text/javascript" src="../grid/flashchart/fusioncharts/FusionCharts.js"></script>
+    
+    
+<script type="text/javascript" >
+
+
+
+///////////////////////////////////////
+
+var grid_demo_id = "myGrid1" ;
+
+
+var dsOption= {
+
+	fields :[
+		{name : 'no'  },
+		{name : 'country'  },
+		{name : 'customer'  },
+		{name : 'employee'  },
+		{name : 'bill2005' ,type: 'float' },
+		{name : 'bill2006' ,type: 'float' },
+		{name : 'bill2007' ,type: 'float' },
+		{name : 'bill2008' ,type: 'float' },
+		{name : 'orderDate' ,type:'date'  }
+		
+	],
+  uniqueField : 0 ,
+	recordType : 'array',
+	data : __TEST_DATA__
+}
+
+
+
+var colsOption = [
+     {id: 'chk' ,isCheckColumn : true, 	editable:false },
+     {id: 'no' , header: "Order No" , width :60  },
+     {id: 'employee' , header: "Employee" , width :80  },
+	   {id: 'country' , header: "Country" , width :70  },
+	   {id: 'customer' , header: "Customer" , width :80  },
+	   {id: 'bill2005' , header: "2005" , width :60, inChart :true, chartColor : 'eecc99'},
+	   {id: 'bill2006' , header: "2006" , width :60, inChart :true, chartColor : '66eeaa'  },
+	   {id: 'bill2007' , header: "2007" , width :60, inChart :true, chartColor : 'd65555'  },
+	   {id: 'bill2008' , header: "2008" , width :60, inChart :true, chartColor : 'eeaa33'  },
+	   {id: 'orderDate' , header: "Delivery Date" , width :100}
+       
+];
+ 
+
+var gridOption={
+	id : grid_demo_id,
+	width: "700",  //"100%", // 700,
+	height: "200",  //"100%", // 330,
+	
+	container : 'gridbox', 
+	replaceContainer : true, 
+	
+	dataset : dsOption ,
+	columns : colsOption ,
+	pageSize : 10 ,
+	toolbarContent : 'nav | goto'
+};
+
+
+
+
+var mygrid=new Sigma.Grid( gridOption );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid) );
+
+
+//////////////////////////////////////////////////////////
+
+
+
+
+
+
+</script>
+</head>
+<body>
+
+<div id="page-container">
+  <div id="main-nav">
+            <div id="logo" style="margin: 10px">
+                                        <a href="http://www.sigmawidgets.com/">
+                                            <img border="0"  src="images/logo.gif"/></a></div>
+                                    <div id="menu">
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/">Home</a></div>
+                                        <div class="menuLink" id="menu1">
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/">Products </a>
+                                        </div>
+                                        <div class="menuLink" id="menu2">
+                                            <a href="http://www.sigmawidgets.com/company/offshore.html">Company &amp;Services</a>
+                                        </div>
+                                        <div class="menuLink" id="menu3" >
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/demos/"><font color="ff8c00">Live Demo</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/download.html"><font color="ff8c00">Download</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/forum"><font color="ff8c00">Forum</font></a>
+                                        </div>
+                                    </div>
+</div>
+
+   
+  <div id="header">
+  <h1>
+      Product - Sigma Grid - Sample</h1>
+  </div>
+
+  <div id="content">
+    
+	  <h2>Save checkbox status in paginal grid</h2>
+      <p>
+    This sample demonstrates using array to keep the status of checkbox in grid.</p>
+      <p>1. Check some boxes in a one page.<br />
+    2. Switch to another page and turn back to the original page.<br />
+    3. Those  boxes checked is still there.
+    
+    
+          </p>
+      <div id="bigbox" style="margin:15px;display:!none;">
+      <div id="gridbox" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:200px;width:700px;" ></div>
+    </div>
+    <p> Sigma grid could automatically seperate page. Yet for each item on every page, we could use javascrip array together with grid API to store the checked checkbox index. </p>
+      <p>
+      <textarea name="code" class="javascript">var colsOption = [
+     {id: 'chk' ,isCheckColumn : true}
+     ...
+];
+</textarea>
+      </p>
+      <h2>Related Links</h2>
+      <p><a href="demo_list.html">Demos List</a> - <a href="example_paging.html">Paging</a></p>
+  </div>
+  
+  
+
+  <div id="footer">All contents are (c) Copyright 2005 - 2008, Sigma Software Inc. All rights Reserved</div>
+</div>
+<script type="text/javascript">
+jssc.colorAll("code");
+</script>
+</body>
+</html>

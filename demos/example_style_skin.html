@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Change skin or theme  - Sigma Ajax data grid control sample</title>
+<meta http-equiv="Content-Language" content="en-us" /> 
+<meta name="keywords" content="dhtml grid, AJAX grid, skin, theme" >
+<meta name="description" content="How to change skin or change theme" >
+
+<script src="highlight/jssc3.js" type="text/javascript"></script>
+<link href="highlight/style.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css" media="all">@import "./css/doc_no_left.css";</style>
+<script src="../../../js/menu.js" type="text/javascript"></script>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="../grid/calendar/calendar-blue.css"  />
+<script type="text/javascript" src="../grid/calendar/calendar.js"></script>
+<script type="text/javascript" src="../grid/calendar/calendar-cn-utf8.js"></script>
+<script type="text/javascript" src="../grid/calendar/calendar-setup.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../grid/gt_grid.css" />
+<link rel="stylesheet" type="text/css" href="../grid/skin/vista/skinstyle.css" />
+<link rel="stylesheet" type="text/css" href="../grid/skin/pink/skinstyle.css" />
+<link rel="stylesheet" type="text/css" href="../grid/skin/mac/skinstyle.css" />
+
+<script type="text/javascript" src="./data/test_data.js"></script>
+<script type="text/javascript" src="../grid/gt_msg_en.js"></script>
+<script type="text/javascript" src="../grid/gt_const.js"></script>
+<script type="text/javascript" src="../grid/gt_grid_all.js"></script>
+<script type="text/javascript" src="../grid/flashchart/fusioncharts/FusionCharts.js"></script>
+
+    
+    
+<script type="text/javascript" >
+
+
+var dsOption= {
+
+	fields :[
+		{name : 'no'  },
+		{name : 'country'  },
+		{name : 'customer'  },
+		{name : 'employee'  },
+		{name : 'bill2005' ,type: 'float' },
+		{name : 'bill2006' ,type: 'float' },
+		{name : 'bill2007' ,type: 'float' },
+		{name : 'bill2008' ,type: 'float' },
+		{name : 'orderDate' ,type:'date'  }
+		
+	],
+
+	recordType : 'array',
+	data : __TEST_DATA__
+}
+
+
+
+var colsOption = [
+     {id: 'no' , header: "Order No" , width :60  },
+     {id: 'employee' , header: "Employee" , width :80  },
+	   {id: 'country' , header: "Country" , width :70  },
+	   {id: 'customer' , header: "Customer" , width :80  },
+	   {id: 'bill2005' , header: "2005" , width :60},
+	   {id: 'bill2006' , header: "2006" , width :60},
+	   {id: 'bill2007' , header: "2007" , width :60},
+	   {id: 'bill2008' , header: "2008" , width :60},
+	   {id: 'orderDate' , header: "Delivery Date" , width :100}
+       
+];
+
+var gridOption1={
+	id : "myGrid1",
+	width: "700",  //"100%", // 700,
+	height: "200",  //"100%", // 330,
+	
+	container : 'gridbox1', 
+	replaceContainer : true, 
+	dataset : dsOption ,
+	columns : colsOption ,
+	showGridMenu : true ,
+	allowCustomSkin	: true ,
+	toolbarContent : 'nav',
+	skin : "default"
+};
+
+var gridOption2={
+	id : "myGrid2",
+	width: "700",  //"100%", // 700,
+	height: "200",  //"100%", // 330,
+	
+	container : 'gridbox2', 
+	replaceContainer : true, 
+	dataset : dsOption ,
+	columns : colsOption ,
+	showGridMenu : true ,
+	allowCustomSkin	: true ,
+	toolbarContent : 'nav',
+	skin : "mac"
+};
+
+var gridOption3={
+	id : "myGrid3",
+	width: "700",  //"100%", // 700,
+	height: "200",  //"100%", // 330,
+	
+	container : 'gridbox3', 
+	replaceContainer : true, 
+	dataset : dsOption ,
+	columns : colsOption ,
+	showGridMenu : true ,
+	allowCustomSkin	: true ,
+	toolbarContent : 'nav',
+	skin : "pink"
+};
+
+var gridOption4={
+	id : "myGrid4",
+	width: "700",  //"100%", // 700,
+	height: "200",  //"100%", // 330,
+	
+	container : 'gridbox4', 
+	replaceContainer : true, 
+	dataset : dsOption ,
+	columns : colsOption ,
+	showGridMenu : true ,
+	allowCustomSkin	: true ,
+	toolbarContent : 'nav',
+	skin : "vista"
+};
+
+
+var mygrid1=new Sigma.Grid( gridOption1 );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid1) );
+
+var mygrid2=new Sigma.Grid( gridOption2 );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid2) );
+
+var mygrid3=new Sigma.Grid( gridOption3 );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid3) );
+
+var mygrid4=new Sigma.Grid( gridOption4 );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid4) );
+
+//////////////////////////////////////////////////////////
+
+
+
+
+
+
+</script></head>
+<body>
+
+<div id="page-container">
+  <div id="main-nav">
+            <div id="logo" style="margin: 10px">
+                                        <a href="http://www.sigmawidgets.com/">
+                                            <img border="0"  src="images/logo.gif"/></a></div>
+                                    <div id="menu">
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/">Home</a></div>
+                                        <div class="menuLink" id="menu1">
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/">Products </a>
+                                        </div>
+                                        <div class="menuLink" id="menu2">
+                                            <a href="http://www.sigmawidgets.com/company/offshore.html">Company &amp;Services</a>
+                                        </div>
+                                        <div class="menuLink" id="menu3" >
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/demos/"><font color="ff8c00">Live Demo</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/download.html"><font color="ff8c00">Download</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/forum"><font color="ff8c00">Forum</font></a>
+                                        </div>
+                                    </div>
+</div>
+
+   
+  <div id="header">
+  <h1>Product - Sigma Grid - Sample </h1>
+  </div>
+
+  <div id="content">
+    
+	  <h2>Change skin or theme </h2>
+      <p>Sigma grid also has the functionality to change skin/theme. This functionality is built in main menu. Four style, classic, mac, pink and vista are provided.  </p>
+	  <p>End user can choose a style at run time as he/she like. Click Main menu-&gt;Change skin , and see what happens.      
+
+    </p>
+    <div id="bigbox2" style="margin:15px;display:!none;">
+      <h3>Default - Sigma Grid Classic</h3>
+      <div id="gridbox1" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:200px;width:700px;" ></div>
+      <h3>Mac Style</h3>
+      <div id="gridbox2" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:200px;width:700px;" ></div>
+      <h3>Pink Style</h3>
+      <div id="gridbox3" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:200px;width:700px;" ></div>
+      <h3>Vista Style</h3>
+      <div id="gridbox4" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:200px;width:700px;" ></div>
+      
+      </p>
+      <p>&nbsp;</p>
+      <h2>Related Links</h2>
+      <p><a href="demo_list.html">Demos List</a> - <a href="example_grid_menu.html">Main menu</a> - <a href="example_style_skin.html">CSS Based Themes</a></p>
+    </div>
+  </div>
+  <div id="footer">All contents are (c) Copyright 2005 - 2008, Sigma Software Inc. All rights Reserved</div>
+</div>
+
+</body>
+</html>

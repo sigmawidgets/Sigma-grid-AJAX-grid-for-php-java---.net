@@ -1,0 +1,104 @@
+h1{
+ margin:10px 2px 2px 10px;
+ padding-bottom:10px;
+ font: bold 24px Arial,Verdana,sans-serif; 
+ color: #999933; 
+ border-bottom: 1px dashed #aca899;
+}
+h2{
+ margin:10px;
+ font: bold 18px Arial,Verdana,sans-serif;
+ color:#cc9900;
+ border-bottom: 1px dashed #aca899;
+ }
+ h3{
+ margin:10px 2px 10px 2px; 
+ font: bold 16px Arial, Helvetica, sans-serif; 
+ color: #006699; 
+ border-bottom: 1px dashed #aca899;
+ }
+
+h4 {
+  font: bold 14px Arial, Helvetica, sans-serif;
+	color: #999900;
+}
+h5 {
+  font: bold 14px Arial, Helvetica, sans-serif;
+	color: #ff9900; 
+}
+h6 {
+  font: bold 12px Arial, Helvetica, sans-serif;
+	color: #3366cc; 
+}
+ 
+ .linb-custom-block{margin:2px 2px 2px 2px; display:block;}
+ .linb-custom-left{
+ width:210px; 
+ float:left;
+ margin : 12px;
+ font: bold 12px "Trebuchet MS","Lucida Grande",Verdana,sans-serif;
+ background:#F9FFE9;
+ border: 1px dotted #E9D3F4;
+ }
+ 
+.linb-custom-all{
+ width:90%; 
+ margin: 24px;
+ font: bold 12px "Trebuchet MS","Lucida Grande",Verdana,sans-serif;
+ background:#F9FFE9;
+ border: 1px dotted #E9D3F4;
+ }
+ 
+ .linb-custom-icon{
+ margin:2px;
+ width:16px;
+ height:16px;
+ background-image:url(img/img.gif);
+ vertical-align: bottom;
+ }
+ 
+ .linb-custom-block p{
+ margin : 12px;
+ font: bold 12px "Trebuchet MS","Lucida Grande",Verdana,sans-serif;
+ background:#F9FFE9;
+ border: 1px dotted #E9D3F4;
+ }
+ 
+ .linb-custom-block div{
+ margin : 12px;
+ font: bold 12px "Trebuchet MS","Lucida Grande",Verdana,sans-serif;
+ background:#F9FFE9;
+ border: 1px dotted #E9D3F4;
+ padding:2px;
+ }
+ 
+.linb-custom-block p .sample{
+ color: blue;
+ font: 14px;
+ }
+ 
+ .linb-custom-cmd{
+ margin:2px;
+ width:16px;
+ height:16px;
+ background-image:url(img/img.gif);
+  vertical-align: bottom;
+  background-position: left top;
+ }
+ 
+ .linb-func-name{
+ font: 18px Bookman Old Style, Helvetica, sans-serif;
+ color: blue;
+ }
+ 
+span {
+  display:-moz-inline-box inline;
+  vertical-align:middle;
+}
+div, span{
+border:0pt none;
+}
+div, span{
+margin:0pt;
+padding:0pt;
+}

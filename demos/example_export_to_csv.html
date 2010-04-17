@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Export To CSV - Sigma Ajax data grid control sample</title>
+<meta http-equiv="Content-Language" content="en-us" /> 
+<meta name="keywords" content="dhtml grid, AJAX grid, Export to csv " >
+<meta name="description" content="How to export data to csv" >
+
+<script src="highlight/jssc3.js" type="text/javascript"></script>
+<link href="highlight/style.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css" media="all">@import "./css/doc_no_left.css";</style>
+<script src="../../../js/menu.js" type="text/javascript"></script>
+
+
+<link rel="stylesheet" type="text/css" href="../grid/gt_grid.css" />
+<script type="text/javascript" src="../grid/gt_msg_en.js"></script>
+<script type="text/javascript" src="../grid/gt_grid_all.js"></script>
+
+
+<script type="text/javascript" >
+
+
+var dsConfig= {
+
+	uniqueField : 'no' ,
+
+	fields :[
+		{name : 'no'     ,  type: 'int'    },
+		{name : 'name'      },
+		{name : 'age'    ,  type: 'int'    },
+		{name : 'gender'    },
+		{name : 'english',  type: 'float'  },
+		{name : 'math'   ,  type: 'float'  },
+		{name : 'total'   , type: 'float',
+			initValue : function(record){
+				return record['english'] + record['math'];
+			}
+		}
+	]
+};
+
+var colsConfig = [
+		{ id : 'no'      , header : "No" , width : 50 , 	editable:false },
+		{ id : 'name'    , header : "Name" , width : 100 ,  editable:false ,  
+    renderer : function(value ,record,columnObj,grid,colNo,rowNo){
+				return '<a target=blank href="http://www.' + value + '.com">' + value + '</a>';
+			}	
+    },
+		{ id : 'age'     , header : "Age" , width : 50 , 	editable:false},
+		{ id : 'gender'  , header : "Country" , width : 50 , 
+			renderer : function(value ,record,columnObj,grid,colNo,rowNo){
+				return '<img bodrer="0" src="./images/flag_' + value + '.gif" />';
+			}
+		},
+		{ id : 'english' , header : "2007" , width : 60 , align :'right'},
+		{ id : 'math'    , header : "2008" , width : 60 , align :'right'},
+		{ id : 'total'   , header : "Total" , width : 70 , align :'right',
+			renderer : function(value ,record,columnObj,grid,colNo,rowNo){
+				   var total = record['total'];
+				   if (total>170) {
+						total =  '<span style="color:red" >'+ total +'</span>';
+				   }else if (total<120) {
+						total = '<span style="color:blue" >'+ total +'</span>';
+				   }
+				   return total;
+			}
+		},
+
+		{ id : 'detail'   , header : "More" , width : 120,
+			renderer : function(value ,record,columnObj,grid,colNo,rowNo){
+				return '<img bodrer="0" src="./images/testImg.gif" width="16" height="16" />';
+			}
+		}
+];
+
+var gridConfig={
+
+	id : "grid1",
+	
+	loadURL : './export_php/testList.php',
+
+	exportURL : './export_php/testList.php?export=true',
+	
+	exportFileName : 'test_export_doc',
+
+	dataset : dsConfig ,
+
+	columns : colsConfig ,
+
+	container : 'grid1_container', 
+
+	toolbarPosition : 'bottom',
+
+	toolbarContent : 'csv' ,
+
+	beforeSave : function(reqParam){
+		//alert(Sigma.toJSONString(reqParam) ) ;
+		//Sigma.$grid('grid1').reload(true);
+		//return false;
+	},
+	showGridMenu : true,
+  allowCustomSkin : true,
+  allowFreeze : true,
+  allowGroup : true,
+  allowHide : true,
+  
+	pageSize : 10 ,
+	pageSizeList : [5,10,15,20],	
+  remotePaging : false,
+  autoLoad : false
+
+};
+
+var mygrid=new Sigma.Grid( gridConfig );
+
+Sigma.Utils.onLoad( function(){
+
+	mygrid.render();
+	mygrid.reload();
+} );
+
+
+</script>
+</head>
+<body>
+
+<div id="page-container">
+  <div id="main-nav">
+            <div id="logo" style="margin: 10px">
+                                        <a href="http://www.sigmawidgets.com/">
+                                            <img border="0"  src="images/logo.gif"/></a></div>
+                                    <div id="menu">
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/">Home</a></div>
+                                        <div class="menuLink" id="menu1">
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/">Products </a>
+                                        </div>
+                                        <div class="menuLink" id="menu2">
+                                            <a href="http://www.sigmawidgets.com/company/offshore.html">Company &amp;Services</a>
+                                        </div>
+                                        <div class="menuLink" id="menu3" >
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/demos/"><font color="ff8c00">Live Demo</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/download.html"><font color="ff8c00">Download</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/forum"><font color="ff8c00">Forum</font></a>
+                                        </div>
+                                    </div>
+</div>
+
+   
+  <div id="header">
+  <h1>
+      Product - Sigma Grid - Sample</h1>
+  </div>
+
+  <div id="content">
+    
+	  <h2>Export To CSV</h2>
+      <p>
+          This sample shows how to export data to csv file. Note that this sample needs help of server side code. Please run it in your web server instead of opening it directly in your brower. 
+          
+    <div id="bigbox" style="margin:15px;display:!none;">
+      <div id="grid1_container" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:200px;width:700px;" ></div>
+    </div>
+    
+    
+    <h2>Related Links</h2>
+    <p><a href="demo_list.html">Demos List</a> - <a href="example_column_customize_editor.html">Customized cell editor</a></p>
+  </div>
+  
+  
+
+  <div id="footer">All contents are (c) Copyright 2005 - 2008, Sigma Software Inc. All rights Reserved</div>
+</div>
+<script type="text/javascript">
+jssc.colorAll("code");
+</script>
+</body>
+</html>

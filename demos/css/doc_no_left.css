@@ -1,0 +1,180 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+font-family: Arial, Helvetica, Verdana, Sans-serif;
+font-size: 12px;
+/*color: #666666;*/
+background: #cccc99;
+}
+
+
+#page-container {
+  width: 760px;
+  margin:auto;
+  /*background: red;*/
+}
+
+#main-nav {
+background: #ffffff;
+height: 45px;
+margin-bottom: 20px;
+}
+
+#mcover{
+
+background:#ffffff;
+margin-bottom:20px;
+}
+
+#header {
+background:#ffffff;
+}
+
+
+#header h1{
+padding:20px 10px 10px 15px;
+}
+
+#sidebar-a {
+float:left;
+width:180px;
+background: #ffffff;
+margin-bottom:20px;
+border-right: 1px dashed;
+}
+
+#sidebar-a .padding{
+padding:10px;
+}
+
+#content {
+
+background: #ffffff;
+margin-bottom:20px;
+}
+
+
+#content p {
+margin: 0;
+padding: 0;
+padding-bottom: 15px;
+}
+
+#content p {
+padding: 15px;
+}
+
+
+#footer {
+clear: both;
+height: 15px;
+font-family: Tahoma, Arial, Helvetica, Sans-serif;
+font-size: 10px;
+border-top: 1px solid #efefef;
+padding: 13px 25px;
+background:#ffffff;
+text-align:center;
+}
+
+
+
+.hidden {
+display: none;
+}
+
+h1 {
+margin: 0;
+padding: 0;
+}
+
+
+
+/*Menu begin*/
+#logo {
+	FLOAT: left;
+	height: 100%;
+}
+#menu {
+	FLOAT: left;
+	margin: 10px;
+}
+.menuLinkHome {
+	MARGIN-TOP: 2px; FLOAT: left
+}
+.menuLinkHome a {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; PADDING-TOP: 0px; TEXT-DECORATION: none
+}
+.menuLink {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 12px; FLOAT: left; PADDING-BOTTOM: 2px; COLOR: black; PADDING-TOP: 2px; TEXT-DECORATION: none
+}
+.menuLink a {
+	TEXT-DECORATION: none
+}
+.menuLink a:hover {
+	TEXT-DECORATION: none
+}
+.menuLinkOn A {
+	COLOR: black; TEXT-DECORATION: none
+}
+.menuLinkOn {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 12px; FLOAT: left; PADDING-BOTTOM: 2px; CURSOR: default; COLOR: black; PADDING-TOP: 2px; FONT-FAMILY: Arial; BACKGROUND-COLOR: #dbe2f9; TEXT-DECORATION: none
+}
+.arrow {
+	PADDING-BOTTOM: 2px
+}
+
+.tMenu {
+	COLOR: black; TEXT-DECORATION: none
+}
+
+#dropmenudiv {
+	POSITION: absolute; BACKGROUND-COLOR: #dbe2f9
+}
+#dropmenudiv A.menuBlock {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 5px; PADDING-BOTTOM: 0px; FONT: 11px/18px Arial; COLOR: black; TEXT-INDENT: 3px; PADDING-TOP: 2px; BORDER-BOTTOM: white 1px dotted; WHITE-SPACE: nowrap; HEIGHT: 22px; TEXT-ALIGN: left; TEXT-DECORATION: none
+}
+#dropmenudiv A.menuBlock:hover {
+	COLOR: white; BACKGROUND-COLOR: #243a88
+}
+
+lnkblue {
+	FONT-WEIGHT: normal; FONT-SIZE: 10px; MARGIN: -8px 0px 0px; COLOR: black; FONT-FAMILY: Arial
+}
+/* Menu end*/
+
+
+h1 {
+	color: #999933; 
+	font-size:16px;
+}
+h2 {
+	color: #cc9900;
+	margin:0;
+	font-size:14px;
+	padding: 10px 0 0 15px;
+}
+h3 {
+	color: #006699;
+}
+h4 {
+	color: #999900;
+}
+h5 {
+	color: #ff9900; 
+}
+h6 {
+	color: #3366cc; 
+}
+
+a:link {
+	color: #3399ff
+}
+a:visited {
+	color: #3366cc
+}
+a:active {
+	color: #ff9900
+}

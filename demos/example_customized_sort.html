@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Define sorting rule - Sigma Ajax data grid control sample</title>
+<meta http-equiv="Content-Language" content="en-us" /> 
+<meta name="keywords" content="dhtml grid, AJAX data grid, Sorting Rule, Column compare" >
+<meta name="description" content="How to define sorting rule on grid column" >
+	
+
+<script src="highlight/jssc3.js" type="text/javascript"></script>
+<link href="highlight/style.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css" media="all">@import "./css/doc_no_left.css";</style>
+<script src="../../../js/menu.js" type="text/javascript"></script>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="../grid/calendar/calendar-blue.css"  />
+<script type="text/javascript" src="../grid/calendar/calendar.js"></script>
+<script type="text/javascript" src="../grid/calendar/calendar-setup.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../grid/gt_grid.css" />
+<link rel="stylesheet" type="text/css" href="../grid/skin/vista/skinstyle.css" />
+<script type="text/javascript" src="./data/football_score.js"></script>
+<script type="text/javascript" src="../grid/gt_msg_en.js"></script>
+<script type="text/javascript" src="../grid/gt_grid_all.js"></script>
+<script type="text/javascript" src="../grid/flashchart/fusioncharts/FusionCharts.js"></script>
+
+    
+    
+<script type="text/javascript" >
+
+var grid_demo_id = "myGrid1" ;
+
+
+var dsOption= {
+
+	fields :[
+		{name : 'teama'  },
+		{name : 'score'  },
+		{name : 'teamb'  }
+		
+	],
+	recordType : 'array',
+	data : __TEST_DATA__
+}
+
+function my_renderer(value ,record,columnObj,grid,colNo,rowNo){
+		var no= record[columnObj.fieldIndex];
+		return "<img src=\"./images/flag_" + no.toLowerCase() + ".gif\">";
+}
+
+var colsOption = [
+     {id: 'teama' , header: "Team A" , width :120  },
+     {id: 'score' , header: "Score" , width :80, 
+       sortFn :function(r1,r2){
+         arr1 = r1[1].split(":");
+         arr2 = r2[1].split(":");
+				return (arr1[0]-arr1[1]) - (arr2[0]-arr2[1]);
+			 }
+     },
+	   {id: 'teamb' , header: "Team B" , width :120}
+       
+];
+ 
+
+var gridOption={
+	id : grid_demo_id,
+	width: "400",  //"100%", // 700,
+	height: "200",  //"100%", // 330,
+	
+	container : 'gridbox', 
+	replaceContainer : true, 
+	listenResize : false,
+
+	dataset : dsOption ,
+	columns : colsOption,
+	toolbarPosition : null
+};
+
+
+
+
+var mygrid=new Sigma.Grid( gridOption );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid) );
+
+
+//////////////////////////////////////////////////////////
+
+
+
+
+
+
+</script>
+</head>
+<body>
+
+<div id="page-container">
+  <div id="main-nav">
+            <div id="logo" style="margin: 10px">
+                                        <a href="http://www.sigmawidgets.com/">
+                                            <img border="0"  src="images/logo.gif"/></a></div>
+                                    <div id="menu">
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/">Home</a></div>
+                                        <div class="menuLink" id="menu1">
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/">Products </a>
+                                        </div>
+                                        <div class="menuLink" id="menu2">
+                                            <a href="http://www.sigmawidgets.com/company/offshore.html">Company &amp;Services</a>
+                                        </div>
+                                        <div class="menuLink" id="menu3" >
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/demos/"><font color="ff8c00">Live Demo</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/download.html"><font color="ff8c00">Download</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/forum"><font color="ff8c00">Forum</font></a>
+                                        </div>
+                                    </div>
+</div>
+
+   
+  <div id="header">
+  <h1>
+      Product - Sigma Grid - Sample&nbsp;</h1>
+  </div>
+
+  <div id="content">
+    
+	  <h2>
+          Define sorting rule</h2>
+      <p>The following sample shows how to sort column with a specific rule. Teams which lose more appears before teams lose less.
+       
+    </p>
+    <div id="bigbox" style="margin:15px;display:!none;">
+      <div id="gridbox" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:200px;width:700px;" ></div>
+    </div>
+      <p><textarea name="code" class="javascript">var colsOption = [
+     {id: 'teama' , header: "Team A" , width :120  },
+     {id: 'score' , header: "Score" , width :80, 
+       sortFn :function(r1,r2){
+         arr1 = r1[1].split(":");
+         arr2 = r2[1].split(":");
+				return (arr1[0]-arr1[1]) - (arr2[0]-arr2[1]);
+		   }
+     },
+	   {id: 'teamb' , header: "Team B" , width :120}      
+];</textarea></p>
+      
+      <h2>Related Links </h2>
+      <p><a href="example_row_conditional_formatting.html">User defined cell renderer</a> - <a href="example_cell_link.html"> Hyper link cell</a>&nbsp;- <a href="example_cell_long_text.html">Long text in cell</a> &nbsp;</p>
+  </div>
+  
+  
+
+  <div id="footer">All contents are (c) Copyright 2005 - 2008, Sigma Software Inc. All rights Reserved</div>
+</div>
+
+<script type="text/javascript">
+jssc.colorAll("code");
+</script>
+</body>
+</html>

@@ -1,0 +1,941 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Sigma Grid API Reference</title>
+        <link rel="stylesheet" href="img/shared.css" type="text/css">
+        <script src='highlight/jssc3.js' type='text/javascript'></script>
+        <link href='highlight/style.css' rel='stylesheet' type='text/css' />
+        <script type="text/javascript" src="img/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript">
+        (function($){
+$(document).ready(
+	function()
+	{
+		tree = $('li.index');
+		$('li', tree.get(0)).each(
+			function()
+			{
+				subbranch = $('ul', this);
+				if (subbranch.size() > 0) {
+					if (subbranch.eq(0).css('display') == 'none') {
+						$(this).prepend('<img src="img/bullet_toggle_plus.png" width="16" height="16" class="expandImage" />');
+					} else {
+						$(this).prepend('<img src="img/bullet_toggle_minus.png" width="16" height="16" class="expandImage" />');
+					}
+				} else {
+					//$(this).prepend('<img src="img/spacer.gif" width="16" height="16" class="expandImage" />');
+				}
+			}
+		);
+		$('img.expandImage', tree.get(0)).click(
+			function()
+			{
+				if (this.src.indexOf('spacer') == -1) {
+					subbranch = $('ul', this.parentNode).eq(0);
+					if (subbranch.css('display') == 'none') {
+						subbranch.show();
+						this.src = 'img/bullet_toggle_minus.png';
+					} else {
+						subbranch.hide();
+						this.src = 'img/bullet_toggle_plus.png';
+					}
+				}
+			}
+		);
+		
+		jssc.colorAll("code");
+		
+	}
+);
+
+})(jQuery);
+
+</script>
+
+
+    </head>
+    <body>
+<h1> Grid Reference</h1>
+<div class="index">
+<ul>
+<li class="class"><a href="sigma.html">Sigma</a>
+  <ul>
+    <li class="group"><a href="sigma.html#method">Method</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma.html#$grid">$grid</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_grid.html">Sigma.Grid</a>
+  <ul>
+    <li class="group"><a href="sigma_grid.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_grid.html#config_allowfreeze">allowFreeze</a></li>
+        <li class="config"><a href="sigma_grid.html#config_allowgroup">allowGroup</a></li>
+        <li class="config"><a href="sigma_grid.html#config_allowhide">allowHide</a></li>
+        <li class="config"><a href="sigma_grid.html#config_clickstartedit">clickStartEdit</a></li>
+        <li class="config"><a href="sigma_grid.html#config_container">container</a></li>
+        <li class="config"><a href="sigma_grid.html#config_customhead">customHead</a></li>
+        <li class="config"><a href="sigma_grid.html#config_dataset">dataset</a></li>
+        <li class="config"><a href="sigma_grid.html#config_defaultrecord">defaultRecord</a></li>
+        <li class="config"><a href="sigma_grid.html#config_height">height</a></li>
+        <li class="config"><a href="sigma_grid.html#config_id">id</a></li>
+        <li class="config"><a href="sigma_grid.html#config_jsonparamname">jsonParamName</a></li>
+        <li class="config"><a href="sigma_grid.html#config_language">language</a></li>
+        <li class="config"><a href="sigma_grid.html#config_lightoverrow">lightOverRow</a></li>
+        <li class="config"><a href="sigma_grid.html#config_loadurl">loadURL</a></li>
+        <li class="config"><a href="sigma_grid.html#config_minheight">minHeight</a></li>
+        <li class="config"><a href="sigma_grid.html#config_minwidth">minWidth</a></li>
+        <li class="config"><a href="sigma_grid.html#config_pagesize">pageSize</a></li>
+        <li class="config"><a href="sigma_grid.html#config_pagesizelist">pageSizeList</a></li>
+        <li class="config"><a href="sigma_grid.html#config_reloadaftersave">reloadAfterSave</a></li>
+        <li class="config"><a href="sigma_grid.html#config_remotefilter">remoteFilter</a></li>
+        <li class="config"><a href="sigma_grid.html#config_remotepaging">remotePaging</a></li>
+        <li class="config"><a href="sigma_grid.html#config_remotesort">remoteSort</a></li>
+        <li class="config"><a href="sigma_grid.html#config_replacecontainer">replaceContainer</a></li>
+        <li class="config"><a href="sigma_grid.html#config_saveurl">saveURL</a></li>
+        <li class="config"><a href="sigma_grid.html#config_selectrowbycheck">selectRowByCheck</a></li>
+        <li class="config"><a href="sigma_grid.html#config_showgridmenu">showGridMenu</a></li>
+        <li class="config"><a href="sigma_grid.html#config_showindexcolumn">showIndexColumn</a></li>
+        <li class="config"><a href="sigma_grid.html#config_skin">skin</a></li>
+        <li class="config"><a href="sigma_grid.html#config_striperows">stripeRows</a></li>
+        <li class="config"><a href="sigma_grid.html#config_submitupdatedfields">submitUpdatedFields</a></li>
+        <li class="config"><a href="sigma_grid.html#config_toolbarcontent">toolbarContent</a></li>
+        <li class="config"><a href="sigma_grid.html#config_toolbarposition">toolbarPosition</a></li>
+        <li class="config"><a href="sigma_grid.html#config_transparentmask">transparentMask</a></li>
+        <li class="config"><a href="sigma_grid.html#config_width">width</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_grid.html#property">Property</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_grid.html#property_activecell">activeCell</a></li>
+        <li class="config"><a href="sigma_grid.html#property_activecolumn">activeColumn</a></li>
+        <li class="config"><a href="sigma_grid.html#property_activerecord">activeRecord</a></li>
+        <li class="config"><a href="sigma_grid.html#property_activerow">activeRow</a></li>
+        <li class="config"><a href="sigma_grid.html#property_allowcustomskin">allowCustomSkin</a></li>
+        <li class="config"><a href="sigma_grid.html#property_allowfreeze">allowFreeze</a></li>
+        <li class="config"><a href="sigma_grid.html#property_allowgroup">allowGroup</a></li>
+        <li class="config"><a href="sigma_grid.html#property_allowhide">allowHide</a></li>
+        <li class="config"><a href="sigma_grid.html#property_clickstartedit">clickStartEdit</a></li>
+        <li class="config"><a href="sigma_grid.html#property_columnmap">columnMap</a></li>
+        <li class="config"><a href="sigma_grid.html#property_columns">columns</a></li>
+        <li class="config"><a href="sigma_grid.html#property_defaultrecord">defaultRecord</a></li>
+        <li class="config"><a href="sigma_grid.html#property_lightoverrow">lightOverRow</a></li>
+        <li class="config"><a href="sigma_grid.html#property_loadurl">loadURL</a></li>
+        <li class="config"><a href="sigma_grid.html#property_minheight">minHeight</a></li>
+        <li class="config"><a href="sigma_grid.html#property_minwidth">minWidth</a></li>
+        <li class="config"><a href="sigma_grid.html#property_reloadaftersave">reloadAfterSave</a></li>
+        <li class="config"><a href="sigma_grid.html#property_remotefilter">remoteFilter</a></li>
+        <li class="config"><a href="sigma_grid.html#property_remotepaging">remotePaging</a></li>
+        <li class="config"><a href="sigma_grid.html#property_remotesort">remoteSort</a></li>
+        <li class="config"><a href="sigma_grid.html#property_resizable">resizable</a></li>
+        <li class="config"><a href="sigma_grid.html#property_saveurl">saveURL</a></li>
+        <li class="config"><a href="sigma_grid.html#property_selectedrows">selectedRows</a></li>
+        <li class="config"><a href="sigma_grid.html#property_selectrowbycheck">selectRowByCheck</a></li>
+        <li class="config"><a href="sigma_grid.html#property_submitupdatedfields">submitUpdatedFields</a></li>
+        <li class="config"><a href="sigma_grid.html#property_transparentmask">transparentMask</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_grid.html#method">Method</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_grid.html#addparameters">addParameters</a></li>
+        <li class="config"><a href="sigma_grid.html#addrow">addRow</a></li>
+        <li class="config"><a href="sigma_grid.html#applyfilter">applyFilter</a></li>
+        <li class="config"><a href="sigma_grid.html#checkrow">checkRow</a></li>
+        <li class="config"><a href="sigma_grid.html#cleancontent">cleanContent</a></li>
+        <li class="config"><a href="sigma_grid.html#cleanparameters">cleanParameters</a></li>
+        <li class="config"><a href="sigma_grid.html#closegridmenu">closeGridMenu</a></li>
+        <li class="config"><a href="sigma_grid.html#deleterow">deleteRow</a></li>
+        <li class="config"><a href="sigma_grid.html#editcell">editCell</a></li>
+        <li class="config"><a href="sigma_grid.html#endedit">endEdit</a></li>
+        <li class="config"><a href="sigma_grid.html#exportgrid">exportGrid</a></li>
+        <li class="config"><a href="sigma_grid.html#focuscell">focusCell</a></li>
+        <li class="config"><a href="sigma_grid.html#foreachrow">forEachRow</a></li>
+        <li class="config"><a href="sigma_grid.html#getcell">getCell</a></li>
+        <li class="config"><a href="sigma_grid.html#getcellvalue">getCellValue</a></li>
+        <li class="config"><a href="sigma_grid.html#getcolumn">getColumn</a></li>
+        <li class="config"><a href="sigma_grid.html#getdeletedrecords">getDeletedRecords</a></li>
+        <li class="config"><a href="sigma_grid.html#getdimension">getDimension</a></li>
+        <li class="config"><a href="sigma_grid.html#getdisplaycolumns">getDisplayColumns</a></li>
+        <li class="config"><a href="sigma_grid.html#geteventtargets">getEventTargets</a></li>
+        <li class="config"><a href="sigma_grid.html#getfilterinfo">getFilterInfo</a></li>
+        <li class="config"><a href="sigma_grid.html#getinsertedrecords">getInsertedRecords</a></li>
+        <li class="config"><a href="sigma_grid.html#getpageinfo">getPageInfo</a></li>
+        <li class="config"><a href="sigma_grid.html#getrecord">getRecord</a></li>
+        <li class="config"><a href="sigma_grid.html#getselectedrecords">getSelectedRecords</a></li>
+        <li class="config"><a href="sigma_grid.html#getskin">getSkin</a></li>
+        <li class="config"><a href="sigma_grid.html#getupdatedrecords">getUpdatedRecords</a></li>
+        <li class="config"><a href="sigma_grid.html#gotopage">gotoPage</a></li>
+        <li class="config"><a href="sigma_grid.html#hidecelltooltip">hideCellToolTip</a></li>
+        <li class="config"><a href="sigma_grid.html#hidedialog">hideDialog</a></li>
+        <li class="config"><a href="sigma_grid.html#hidemask">hideMask</a></li>
+        <li class="config"><a href="sigma_grid.html#hidewaiting">hideWaiting</a></li>
+        <li class="config"><a href="sigma_grid.html#insert">insert</a></li>
+        <li class="config"><a href="sigma_grid.html#movecolumn">moveColumn</a></li>
+        <li class="config"><a href="sigma_grid.html#printgrid">printGrid</a></li>
+        <li class="config"><a href="sigma_grid.html#refresh">refresh</a></li>
+        <li class="config"><a href="sigma_grid.html#refreshrow">refreshRow</a></li>
+        <li class="config"><a href="sigma_grid.html#reload">reload</a></li>
+        <li class="config"><a href="sigma_grid.html#render">render</a></li>
+        <li class="config"><a href="sigma_grid.html#save">save</a></li>
+        <li class="config"><a href="sigma_grid.html#selectrow">selectRow</a></li>
+        <li class="config"><a href="sigma_grid.html#setcellvalue">setCellValue</a></li>
+        <li class="config"><a href="sigma_grid.html#setcontent">setContent</a></li>
+        <li class="config"><a href="sigma_grid.html#setdimension">setDimension</a></li>
+        <li class="config"><a href="sigma_grid.html#setfilterinfo">setFilterInfo</a></li>
+        <li class="config"><a href="sigma_grid.html#setpageinfo">setPageInfo</a></li>
+        <li class="config"><a href="sigma_grid.html#setskin">setSkin</a></li>
+        <li class="config"><a href="sigma_grid.html#showcelltooltip">showCellToolTip</a></li>
+        <li class="config"><a href="sigma_grid.html#showdialog">showDialog</a></li>
+        <li class="config"><a href="sigma_grid.html#showmask">showMask</a></li>
+        <li class="config"><a href="sigma_grid.html#showwaiting">showWaiting</a></li>
+        <li class="config"><a href="sigma_grid.html#sortgrid">sortGrid</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_grid.html#event">Event</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_grid.html#aftercolumnresize">afterColumnResize</a></li>
+        <li class="config"><a href="sigma_grid.html#afteredit">afterEdit</a></li>
+        <li class="config"><a href="sigma_grid.html#afterrowselect">afterRowSelect</a></li>
+        <li class="config"><a href="sigma_grid.html#beforecolumnmove">beforeColumnMove</a></li>
+        <li class="config"><a href="sigma_grid.html#beforedelete">beforeDelete</a></li>
+        <li class="config"><a href="sigma_grid.html#beforeedit">beforeEdit</a></li>
+        <li class="config"><a href="sigma_grid.html#beforeexport">beforeExport</a></li>
+        <li class="config"><a href="sigma_grid.html#beforeinsert">beforeInsert</a></li>
+        <li class="config"><a href="sigma_grid.html#beforeload">beforeLoad</a></li>
+        <li class="config"><a href="sigma_grid.html#beforerowselect">beforeRowSelect</a></li>
+        <li class="config"><a href="sigma_grid.html#beforesave">beforeSave</a></li>
+        <li class="config"><a href="sigma_grid.html#beforeupdate">beforeUpdate</a></li>
+        <li class="config"><a href="sigma_grid.html#customrowattribute">customRowAttribute</a></li>
+        <li class="config"><a href="sigma_grid.html#exportfailure">exportFailure</a></li>
+        <li class="config"><a href="sigma_grid.html#loadfailure">loadFailure</a></li>
+        <li class="config"><a href="sigma_grid.html#loadresponsehandler">loadResponseHandler</a></li>
+        <li class="config"><a href="sigma_grid.html#oncellclick">onCellClick</a></li>
+        <li class="config"><a href="sigma_grid.html#oncelldblclick">onCellDblClick</a></li>
+        <li class="config"><a href="sigma_grid.html#oncomplete">onComplete</a></li>
+        <li class="config"><a href="sigma_grid.html#oncontextmenu">onContextMenu</a></li>
+        <li class="config"><a href="sigma_grid.html#onheadclick">onHeadClick</a></li>
+        <li class="config"><a href="sigma_grid.html#onkeydown">onKeyDown</a></li>
+        <li class="config"><a href="sigma_grid.html#onmousemove">onMouseMove</a></li>
+        <li class="config"><a href="sigma_grid.html#onmouseout">onMouseOut</a></li>
+        <li class="config"><a href="sigma_grid.html#onmouseover">onMouseOver</a></li>
+        <li class="config"><a href="sigma_grid.html#onresize">onResize</a></li>
+        <li class="config"><a href="sigma_grid.html#onrowcheck">onRowCheck</a></li>
+        <li class="config"><a href="sigma_grid.html#onrowclick">onRowClick</a></li>
+        <li class="config"><a href="sigma_grid.html#onrowdblclick">onRowDblClick</a></li>
+        <li class="config"><a href="sigma_grid.html#savefailure">saveFailure</a></li>
+        <li class="config"><a href="sigma_grid.html#saveresponsehandler">saveResponseHandler</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_column.html">Sigma.Column</a>
+  <ul>
+    <li class="group"><a href="sigma_column.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_column.html#config_align">align</a></li>
+        <li class="config"><a href="sigma_column.html#config_chartcolor">chartColor</a></li>
+        <li class="config"><a href="sigma_column.html#config_editable">editable</a></li>
+        <li class="config"><a href="sigma_column.html#config_editor">editor</a></li>
+        <li class="config"><a href="sigma_column.html#config_emptytext">emptyText</a></li>
+        <li class="config"><a href="sigma_column.html#config_filterable">filterable</a></li>
+        <li class="config"><a href="sigma_column.html#config_freezeable">freezeable</a></li>
+        <li class="config"><a href="sigma_column.html#config_headalign">headAlign</a></li>
+        <li class="config"><a href="sigma_column.html#config_header">header</a></li>
+        <li class="config"><a href="sigma_column.html#config_hideable">hideable</a></li>
+        <li class="config"><a href="sigma_column.html#config_id">id</a></li>
+        <li class="config"><a href="sigma_column.html#config_inchart">inChart</a></li>
+        <li class="config"><a href="sigma_column.html#config_minwidth">minWidth</a></li>
+        <li class="config"><a href="sigma_column.html#config_moveable">moveable</a></li>
+        <li class="config"><a href="sigma_column.html#config_printable">printable</a></li>
+        <li class="config"><a href="sigma_column.html#config_resizable">resizable</a></li>
+        <li class="config"><a href="sigma_column.html#config_sortable">sortable</a></li>
+        <li class="config"><a href="sigma_column.html#config_sortorder">sortOrder</a></li>
+        <li class="config"><a href="sigma_column.html#config_styleclass">styleClass</a></li>
+        <li class="config"><a href="sigma_column.html#config_tooltip">toolTip</a></li>
+        <li class="config"><a href="sigma_column.html#config_width">width</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_column.html#property">Property</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_column.html#property_editable">editable</a></li>
+        <li class="config"><a href="sigma_column.html#property_filterable">filterable</a></li>
+        <li class="config"><a href="sigma_column.html#property_freezeable">freezeable</a></li>
+        <li class="config"><a href="sigma_column.html#property_frozen">frozen</a></li>
+        <li class="config"><a href="sigma_column.html#property_getsortvalue">getSortValue</a></li>
+        <li class="config"><a href="sigma_column.html#property_hidden">hidden</a></li>
+        <li class="config"><a href="sigma_column.html#property_hideable">hideable</a></li>
+        <li class="config"><a href="sigma_column.html#property_moveable">moveable</a></li>
+        <li class="config"><a href="sigma_column.html#property_renderer">renderer</a></li>
+        <li class="config"><a href="sigma_column.html#property_resizable">resizable</a></li>
+        <li class="config"><a href="sigma_column.html#property_sortable">sortable</a></li>
+        <li class="config"><a href="sigma_column.html#property_sortfn">sortFn</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_column.html#method">Method</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_column.html#freeze">freeze</a></li>
+        <li class="config"><a href="sigma_column.html#getcolumnindex">getColumnIndex</a></li>
+        <li class="config"><a href="sigma_column.html#group">group</a></li>
+        <li class="config"><a href="sigma_column.html#hide">hide</a></li>
+        <li class="config"><a href="sigma_column.html#setheader">setHeader</a></li>
+        <li class="config"><a href="sigma_column.html#setwidth">setWidth</a></li>
+        <li class="config"><a href="sigma_column.html#show">show</a></li>
+        <li class="config"><a href="sigma_column.html#toggle">toggle</a></li>
+        <li class="config"><a href="sigma_column.html#unfreeze">unfreeze</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_editor.html">Sigma.Editor</a>
+  <ul>
+    <li class="group"><a href="sigma_editor.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_editor.html#config_defaulttext">defaultText</a></li>
+        <li class="config"><a href="sigma_editor.html#config_type">type</a></li>
+        <li class="config"><a href="sigma_editor.html#config_validator">validator</a></li>
+        <li class="config"><a href="sigma_editor.html#config_validrule">validRule</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_pageinfo.html">Sigma.PageInfo</a>
+  <ul>
+    <li class="group"><a href="sigma_pageinfo.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_pageinfo.html#config_endrownum">endRowNum</a></li>
+        <li class="config"><a href="sigma_pageinfo.html#config_pagenum">pageNum</a></li>
+        <li class="config"><a href="sigma_pageinfo.html#config_pagesize">pageSize</a></li>
+        <li class="config"><a href="sigma_pageinfo.html#config_startrownum">startRowNum</a></li>
+        <li class="config"><a href="sigma_pageinfo.html#config_totalpagenum">totalPageNum</a></li>
+        <li class="config"><a href="sigma_pageinfo.html#config_totalrownum">totalRowNum</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_sortinfo.html">Sigma.SortInfo</a>
+  <ul>
+    <li class="group"><a href="sigma_sortinfo.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_sortinfo.html#config_columnid">columnId</a></li>
+        <li class="config"><a href="sigma_sortinfo.html#config_fieldname">fieldName</a></li>
+        <li class="config"><a href="sigma_sortinfo.html#config_sortstate">sortstate</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_filterinfo.html">Sigma.FilterInfo</a>
+  <ul>
+    <li class="group"><a href="sigma_filterinfo.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_filterinfo.html#config_fieldname">fieldName</a></li>
+        <li class="config"><a href="sigma_filterinfo.html#config_logic">logic</a></li>
+        <li class="config"><a href="sigma_filterinfo.html#config_value">value</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_datafield.html">Sigma.DataField</a>
+  <ul>
+    <li class="group"><a href="sigma_datafield.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_datafield.html#config_name">name</a></li>
+        <li class="config"><a href="sigma_datafield.html#config_type">type</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_datafield.html#event">Event</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_datafield.html#initvalue">initValue</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_dataset.html">Sigma.DataSet</a>
+  <ul>
+    <li class="group"><a href="sigma_dataset.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_dataset.html#config_data">data</a></li>
+        <li class="config"><a href="sigma_dataset.html#config_fields">fields</a></li>
+        <li class="config"><a href="sigma_dataset.html#config_recordtype">recordType</a></li>
+        <li class="config"><a href="sigma_dataset.html#config_uniquefield">uniqueField</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_dataset.html#method">Method</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_dataset.html#getfieldsnum">getFieldsNum</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_toolfactroy.html">Sigma.ToolFactroy</a>
+  <ul>
+    <li class="group"><a href="sigma_toolfactroy.html#method">Method</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_toolfactroy.html#register">register</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</ul>
+</div>
+<div class="content">
+  <a name="config"></a><h2>Config</h2>
+<table class="items-list"><tr><td><a href="sigma_grid.html#config_allowfreeze">allowFreeze</a></td><td><a href="sigma_grid.html#config_allowgroup">allowGroup</a></td><td><a href="sigma_grid.html#config_allowhide">allowHide</a></td><td><a href="sigma_grid.html#config_clickstartedit">clickStartEdit</a></td><tr><td><a href="sigma_grid.html#config_container">container</a></td><td><a href="sigma_grid.html#config_customhead">customHead</a></td><td><a href="sigma_grid.html#config_dataset">dataset</a></td><td><a href="sigma_grid.html#config_defaultrecord">defaultRecord</a></td><tr><td><a href="sigma_grid.html#config_height">height</a></td><td><a href="sigma_grid.html#config_id">id</a></td><td><a href="sigma_grid.html#config_jsonparamname">jsonParamName</a></td><td><a href="sigma_grid.html#config_language">language</a></td><tr><td><a href="sigma_grid.html#config_lightoverrow">lightOverRow</a></td><td><a href="sigma_grid.html#config_loadurl">loadURL</a></td><td><a href="sigma_grid.html#config_minheight">minHeight</a></td><td><a href="sigma_grid.html#config_minwidth">minWidth</a></td><tr><td><a href="sigma_grid.html#config_pagesize">pageSize</a></td><td><a href="sigma_grid.html#config_pagesizelist">pageSizeList</a></td><td><a href="sigma_grid.html#config_reloadaftersave">reloadAfterSave</a></td><td><a href="sigma_grid.html#config_remotefilter">remoteFilter</a></td><tr><td><a href="sigma_grid.html#config_remotepaging">remotePaging</a></td><td><a href="sigma_grid.html#config_remotesort">remoteSort</a></td><td><a href="sigma_grid.html#config_replacecontainer">replaceContainer</a></td><td><a href="sigma_grid.html#config_saveurl">saveURL</a></td><tr><td><a href="sigma_grid.html#config_selectrowbycheck">selectRowByCheck</a></td><td><a href="sigma_grid.html#config_showgridmenu">showGridMenu</a></td><td><a href="sigma_grid.html#config_showindexcolumn">showIndexColumn</a></td><td><a href="sigma_grid.html#config_skin">skin</a></td><tr><td><a href="sigma_grid.html#config_striperows">stripeRows</a></td><td><a href="sigma_grid.html#config_submitupdatedfields">submitUpdatedFields</a></td><td><a href="sigma_grid.html#config_toolbarcontent">toolbarContent</a></td><td><a href="sigma_grid.html#config_toolbarposition">toolbarPosition</a></td><tr><td><a href="sigma_grid.html#config_transparentmask">transparentMask</a></td><td><a href="sigma_grid.html#config_width">width</a></td></table>  <div class="list">
+    <a name="config_allowfreeze"></a> 
+    <h3>allowFreeze</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether [freeze columns] item appear on main menu.</p>
+    <a name="config_allowgroup"></a> 
+    <h3>allowGroup</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether [group column] item appear on main menu.</p>
+    <a name="config_allowhide"></a> 
+    <h3>allowHide</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether [hide column] item appear on main menu.</p>
+    <a name="config_clickstartedit"></a> 
+    <h3>clickStartEdit</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether cell becomes editable once it is clicked. If this flag set to false, user need to click once more to edit an active cell.</p>
+    <a name="config_container"></a> 
+    <h3>container</h3>
+    <p class="padded"><span class="datatype">Sting or DOM</span> &nbsp; Id or DOM object which grid is built up based on. Generally, container should be div or span.</p>
+    <a name="config_customhead"></a> 
+    <h3>customHead</h3>
+    <p class="padded"><span class="datatype">String or DOM</span> &nbsp; Id, dom object or HTML code of a table, which defines layout of grid header.</p>
+    <a name="config_dataset"></a> 
+    <h3>dataset</h3>
+    <p class="padded"><span class="datatype">Object</span> &nbsp; Dataset object of grid. Read only. See Sigma.Dataset</p>
+    <a name="config_defaultrecord"></a> 
+    <h3>defaultRecord</h3>
+    <p class="padded"><span class="datatype">Object or Array</span> &nbsp; Data record template. This template will be adopted if a new row is added or appended.</p>
+    <a name="config_height"></a> 
+    <h3>height</h3>
+    <p class="padded"><span class="datatype">String or Number</span> &nbsp; Height of whole grid. Pixel and percentage are supported.</p>
+    <a name="config_id"></a> 
+    <h3>id</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; Id of grid. Every grid should have unique id if more than one grid appear on same page.</p>
+    <a name="config_jsonparamname"></a> 
+    <h3>jsonParamName</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; To specify parameter name submitted to server side. It's set to "_gt_json" by default. For example, PHP developer could get whole JSON string by $_POST["_gt_json"] in php.</p>
+    <a name="config_language"></a> 
+    <h3>language</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; Language option. By default, messages on toolbar, on menu, of warning are in english.<br> These words for presentation are defined in a language file named gt_msg_en.js.<br> Developer can work out profile of other language. Take Spaish for example, developer need two steps.<br> 1. Work out language file named gt_msg_sp.js and put into the directory where gt_msg_en.js is.<br> 2. Specify language of grid to be sp.</p>
+    <a name="config_lightoverrow"></a> 
+    <h3>lightOverRow</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether to hightlight one row when mouse is hovering over it.</p>
+    <a name="config_loadurl"></a> 
+    <h3>loadURL</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; Url which grid data is loaded from. A function could not be assigned to loadURL since version 2.1, please assign records to grid by setConent. See Sigma.Grid.setContent Sample - To assign a real url to loadURL. loadURL:"http://localhost/server/getStudentsInfo.php"</p>
+    <a name="config_minheight"></a> 
+    <h3>minHeight</h3>
+    <p class="padded"><span class="datatype">Number</span> &nbsp; To specify minimum height if grid can be resized by end user.</p>
+    <a name="config_minwidth"></a> 
+    <h3>minWidth</h3>
+    <p class="padded"><span class="datatype">Number</span> &nbsp; To specify minimum width if grid can be resized by end user.</p>
+    <a name="config_pagesize"></a> 
+    <h3>pageSize</h3>
+    <p class="padded"><span class="datatype">Number</span> &nbsp; To specify how many rows presented per page.</p>
+    <a name="config_pagesizelist"></a> 
+    <h3>pageSizeList</h3>
+    <p class="padded"><span class="datatype">Array</span> &nbsp; To specify page size options. See Sigma.Grid.pageSize The following sample will show a dropdown list of page size for end user to choose.</p>
+    <textarea name="code" class="javascript">pageSizeList :[5,10,20,50,100]</textarea>
+    <a name="config_reloadaftersave"></a> 
+    <h3>reloadAfterSave</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether grid data is reloaded after data being saving.</p>
+    <a name="config_remotefilter"></a> 
+    <h3>remoteFilter</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether server side does filtering work.</p>
+    <a name="config_remotepaging"></a> 
+    <h3>remotePaging</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether server side does paging work.</p>
+    <a name="config_remotesort"></a> 
+    <h3>remoteSort</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether server side does sorting work.</p>
+    <a name="config_replacecontainer"></a> 
+    <h3>replaceContainer</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether container is placed with grid. If not, grid will be a child of container.</p>
+    <a name="config_saveurl"></a> 
+    <h3>saveURL</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; Url which grid data is saved to.</p>
+    <a name="config_selectrowbycheck"></a> 
+    <h3>selectRowByCheck</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether end user can select row by checkbox.</p>
+    <a name="config_showgridmenu"></a> 
+    <h3>showGridMenu</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether main menu shows up.</p>
+    <a name="config_showindexcolumn"></a> 
+    <h3>showIndexColumn</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether to show row number at front of every row.</p>
+    <a name="config_skin"></a> 
+    <h3>skin</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; Name of skin. Could be "pink", "default", "mac", "vista". Developer can also made own skin and put in /grid/skin.</p>
+    <a name="config_striperows"></a> 
+    <h3>stripeRows</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether to show rows in stripe.</p>
+    <a name="config_submitupdatedfields"></a> 
+    <h3>submitUpdatedFields</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether only modified fields are submitted to server.</p>
+    <a name="config_toolbarcontent"></a> 
+    <h3>toolbarContent</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; It's set to 'nav | pagesize | reload | add del save | print | filter chart | state' by default. Developer can change its order or hide some buttons. Sample To show add, delete, save buttons only. There would be a seperator between delete and save. toolbarContent : "add del | save"</p>
+    <a name="config_toolbarposition"></a> 
+    <h3>toolbarPosition</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; Position of toolbar, could be "top", "bottom" or null.</p>
+    <a name="config_transparentmask"></a> 
+    <h3>transparentMask</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To spcify whether mask is transparent or not. False by default.</p>
+    <a name="config_width"></a> 
+    <h3>width</h3>
+    <p class="padded"><span class="datatype">Number or String</span> &nbsp; Width of whole grid. Pixel and percentage are supported. Sample width:500 width:'100%'</p>
+  </div>
+  <a name="property"></a><h2>Properties</h2>
+<table class="items-list"><tr><td><a href="sigma_grid.html#property_activecell">activeCell</a></td><td><a href="sigma_grid.html#property_activecolumn">activeColumn</a></td><td><a href="sigma_grid.html#property_activerecord">activeRecord</a></td><td><a href="sigma_grid.html#property_activerow">activeRow</a></td><tr><td><a href="sigma_grid.html#property_allowcustomskin">allowCustomSkin</a></td><td><a href="sigma_grid.html#property_allowfreeze">allowFreeze</a></td><td><a href="sigma_grid.html#property_allowgroup">allowGroup</a></td><td><a href="sigma_grid.html#property_allowhide">allowHide</a></td><tr><td><a href="sigma_grid.html#property_clickstartedit">clickStartEdit</a></td><td><a href="sigma_grid.html#property_columnmap">columnMap</a></td><td><a href="sigma_grid.html#property_columns">columns</a></td><td><a href="sigma_grid.html#property_defaultrecord">defaultRecord</a></td><tr><td><a href="sigma_grid.html#property_lightoverrow">lightOverRow</a></td><td><a href="sigma_grid.html#property_loadurl">loadURL</a></td><td><a href="sigma_grid.html#property_minheight">minHeight</a></td><td><a href="sigma_grid.html#property_minwidth">minWidth</a></td><tr><td><a href="sigma_grid.html#property_reloadaftersave">reloadAfterSave</a></td><td><a href="sigma_grid.html#property_remotefilter">remoteFilter</a></td><td><a href="sigma_grid.html#property_remotepaging">remotePaging</a></td><td><a href="sigma_grid.html#property_remotesort">remoteSort</a></td><tr><td><a href="sigma_grid.html#property_resizable">resizable</a></td><td><a href="sigma_grid.html#property_saveurl">saveURL</a></td><td><a href="sigma_grid.html#property_selectedrows">selectedRows</a></td><td><a href="sigma_grid.html#property_selectrowbycheck">selectRowByCheck</a></td><tr><td><a href="sigma_grid.html#property_submitupdatedfields">submitUpdatedFields</a></td><td><a href="sigma_grid.html#property_transparentmask">transparentMask</a></td></table>  <div class="list">
+    <a name="property_activecell"></a> 
+    <h3>activeCell</h3>
+    <p class="padded"><span class="datatype">Object</span> &nbsp; Dom object of current active cell. Read only.</p>
+    <a name="property_activecolumn"></a> 
+    <h3>activeColumn</h3>
+    <p class="padded"><span class="datatype">Object</span> &nbsp; Column object. Object of active/last active column. Read only.</p>
+    <a name="property_activerecord"></a> 
+    <h3>activeRecord</h3>
+    <p class="padded"><span class="datatype">Object</span> &nbsp; Data set of current active row. Read only.</p>
+    <a name="property_activerow"></a> 
+    <h3>activeRow</h3>
+    <p class="padded"><span class="datatype">Object</span> &nbsp; Td DOM object of active/last active row. Read only.</p>
+    <a name="property_allowcustomskin"></a> 
+    <h3>allowCustomSkin</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether skin item appear on main menu.</p>
+    <a name="property_allowfreeze"></a> 
+    <h3>allowFreeze</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether [freeze columns] item appear on main menu.</p>
+    <a name="property_allowgroup"></a> 
+    <h3>allowGroup</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether [group column] item appear on main menu.</p>
+    <a name="property_allowhide"></a> 
+    <h3>allowHide</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether [hide column] item appear on main menu.</p>
+    <a name="property_clickstartedit"></a> 
+    <h3>clickStartEdit</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether cell becomes editable once it is clicked. If this flag set to false, user need to click once more to edit an active cell.</p>
+    <a name="property_columnmap"></a> 
+    <h3>columnMap</h3>
+    <p class="padded"><span class="datatype">Object</span> &nbsp; Object of column objects in in key-value formate, where key is column id and value is column object. Read only.</p>
+    <a name="property_columns"></a> 
+    <h3>columns</h3>
+    <p class="padded"><span class="datatype">Array</span> &nbsp; Array of all the column objects. Read only. See Sigma.Column</p>
+    <a name="property_defaultrecord"></a> 
+    <h3>defaultRecord</h3>
+    <p class="padded"><span class="datatype">Object or Array</span> &nbsp; Data record template. This template will be adopted if a new row is added or appended.</p>
+    <a name="property_lightoverrow"></a> 
+    <h3>lightOverRow</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether to hightlight one row when mouse is hovering over it.</p>
+    <a name="property_loadurl"></a> 
+    <h3>loadURL</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; Url which grid data is loaded from. A function could not be assigned to loadURL since version 2.1, please assign records to grid by setConent. See Sigma.Grid.setContent Sample - To assign a real url to loadURL. loadURL:"http://localhost/server/getStudentsInfo.php"</p>
+    <a name="property_minheight"></a> 
+    <h3>minHeight</h3>
+    <p class="padded"><span class="datatype">Number</span> &nbsp; To specify minimum height if grid can be resized by end user.</p>
+    <a name="property_minwidth"></a> 
+    <h3>minWidth</h3>
+    <p class="padded"><span class="datatype">Number</span> &nbsp; To specify minimum width if grid can be resized by end user.</p>
+    <a name="property_reloadaftersave"></a> 
+    <h3>reloadAfterSave</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether grid data is reloaded after data being saving.</p>
+    <a name="property_remotefilter"></a> 
+    <h3>remoteFilter</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether server side does filtering work.</p>
+    <a name="property_remotepaging"></a> 
+    <h3>remotePaging</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether server side does paging work.</p>
+    <a name="property_remotesort"></a> 
+    <h3>remoteSort</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether server side does sorting work.</p>
+    <a name="property_resizable"></a> 
+    <h3>resizable</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify grid be resized by end user. If this flage to be set true, a resizing handle will appears at right-bottom corner. End user could resize grid by dragging this handle.</p>
+    <a name="property_saveurl"></a> 
+    <h3>saveURL</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; Url which grid data is saved to.</p>
+    <a name="property_selectedrows"></a> 
+    <h3>selectedRows</h3>
+    <p class="padded"><span class="datatype">Array</span> &nbsp; Array of selected row objects. Read only.</p>
+    <a name="property_selectrowbycheck"></a> 
+    <h3>selectRowByCheck</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether end user can select row by checkbox.</p>
+    <a name="property_submitupdatedfields"></a> 
+    <h3>submitUpdatedFields</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To specify whether only modified fields are submitted to server.</p>
+    <a name="property_transparentmask"></a> 
+    <h3>transparentMask</h3>
+    <p class="padded"><span class="datatype">Boolean</span> &nbsp; To spcify whether mask is transparent or not. False by default.</p>
+  </div>
+  <a name="method"></a><h2>Method</h2>
+<table class="items-list"><tr><td><a href="sigma_grid.html#addparameters">addParameters</a></td><td><a href="sigma_grid.html#addrow">addRow</a></td><td><a href="sigma_grid.html#applyfilter">applyFilter</a></td><td><a href="sigma_grid.html#checkrow">checkRow</a></td><tr><td><a href="sigma_grid.html#cleancontent">cleanContent</a></td><td><a href="sigma_grid.html#cleanparameters">cleanParameters</a></td><td><a href="sigma_grid.html#closegridmenu">closeGridMenu</a></td><td><a href="sigma_grid.html#deleterow">deleteRow</a></td><tr><td><a href="sigma_grid.html#editcell">editCell</a></td><td><a href="sigma_grid.html#endedit">endEdit</a></td><td><a href="sigma_grid.html#exportgrid">exportGrid</a></td><td><a href="sigma_grid.html#focuscell">focusCell</a></td><tr><td><a href="sigma_grid.html#foreachrow">forEachRow</a></td><td><a href="sigma_grid.html#getcell">getCell</a></td><td><a href="sigma_grid.html#getcellvalue">getCellValue</a></td><td><a href="sigma_grid.html#getcolumn">getColumn</a></td><tr><td><a href="sigma_grid.html#getdeletedrecords">getDeletedRecords</a></td><td><a href="sigma_grid.html#getdimension">getDimension</a></td><td><a href="sigma_grid.html#getdisplaycolumns">getDisplayColumns</a></td><td><a href="sigma_grid.html#geteventtargets">getEventTargets</a></td><tr><td><a href="sigma_grid.html#getfilterinfo">getFilterInfo</a></td><td><a href="sigma_grid.html#getinsertedrecords">getInsertedRecords</a></td><td><a href="sigma_grid.html#getpageinfo">getPageInfo</a></td><td><a href="sigma_grid.html#getrecord">getRecord</a></td><tr><td><a href="sigma_grid.html#getselectedrecords">getSelectedRecords</a></td><td><a href="sigma_grid.html#getskin">getSkin</a></td><td><a href="sigma_grid.html#getupdatedrecords">getUpdatedRecords</a></td><td><a href="sigma_grid.html#gotopage">gotoPage</a></td><tr><td><a href="sigma_grid.html#hidecelltooltip">hideCellToolTip</a></td><td><a href="sigma_grid.html#hidedialog">hideDialog</a></td><td><a href="sigma_grid.html#hidemask">hideMask</a></td><td><a href="sigma_grid.html#hidewaiting">hideWaiting</a></td><tr><td><a href="sigma_grid.html#insert">insert</a></td><td><a href="sigma_grid.html#movecolumn">moveColumn</a></td><td><a href="sigma_grid.html#printgrid">printGrid</a></td><td><a href="sigma_grid.html#refresh">refresh</a></td><tr><td><a href="sigma_grid.html#refreshrow">refreshRow</a></td><td><a href="sigma_grid.html#reload">reload</a></td><td><a href="sigma_grid.html#render">render</a></td><td><a href="sigma_grid.html#save">save</a></td><tr><td><a href="sigma_grid.html#selectrow">selectRow</a></td><td><a href="sigma_grid.html#setcellvalue">setCellValue</a></td><td><a href="sigma_grid.html#setcontent">setContent</a></td><td><a href="sigma_grid.html#setdimension">setDimension</a></td><tr><td><a href="sigma_grid.html#setfilterinfo">setFilterInfo</a></td><td><a href="sigma_grid.html#setpageinfo">setPageInfo</a></td><td><a href="sigma_grid.html#setskin">setSkin</a></td><td><a href="sigma_grid.html#showcelltooltip">showCellToolTip</a></td><tr><td><a href="sigma_grid.html#showdialog">showDialog</a></td><td><a href="sigma_grid.html#showmask">showMask</a></td><td><a href="sigma_grid.html#showwaiting">showWaiting</a></td><td><a href="sigma_grid.html#sortgrid">sortGrid</a></td></table>  <div class="list">
+    <a name="addparameters"></a> 
+      <h3>addParameters(key,&nbsp value)</h3>
+      <p class="padded"> To add an additional parameter pair for submittal. By default, only data defined here will be submitted to server side. By this function, developers could add more parameter pairs.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>String</i></td><td width="10%"><b>key</b></td><td width="80%"> Parameter key.</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>value</b></td><td width="80%"> Parameter value.</td></tr></table></p>
+    <a name="addrow"></a> 
+      <h3>addRow(record,&nbsp startEdit)</h3>
+      <p class="padded"> To append a new row.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>record</b></td><td width="80%"> Data of the row to be added.</td></tr><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>startEdit</b></td><td width="80%"> Indicate if open the first cell for input.</td></tr></table></p>
+    <a name="applyfilter"></a> 
+      <h3>applyFilter(filterInfo)</h3>
+      <p class="padded"> Apply filter to this grid. Only records meeting filter criteria will be displayed within grid.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>filterInfo</b></td><td width="80%">. Filter criteria.</td></tr></table></p>
+    <a name="checkrow"></a> 
+      <h3>checkRow(row,&nbsp checked)</h3>
+      <p class="padded"> To check/uncheck row.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Row to be checked/unchecked.</td></tr><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>checked</b></td><td width="80%"> True for checked, false for unchecked.</td></tr></table></p>
+    <a name="cleancontent"></a> 
+      <h3>cleanContent()</h3>
+      <p class="padded"> To clear all the data showed and make grid empty.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="cleanparameters"></a> 
+      <h3>cleanParameters()</h3>
+      <p class="padded"> Remove all additional parameters. See Sigma.Grid.addParameters</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="closegridmenu"></a> 
+      <h3>closeGridMenu()</h3>
+      <p class="padded"> To Close main menu.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="deleterow"></a> 
+      <h3>deleteRow(row)</h3>
+      <p class="padded"> To remove row.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> DOM TR presenting a row.</td></tr></table></p>
+    <a name="editcell"></a> 
+      <h3>editCell(cell)</h3>
+      <p class="padded"> To open a cell for editing.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%">. Dom(td) of the cell to be open.</td></tr></table></p>
+    <a name="endedit"></a> 
+      <h3>endEdit()</h3>
+      <p class="padded"> To close current cell editor and update current cell value.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="exportgrid"></a> 
+      <h3>exportGrid(type,&nbsp fileName,&nbsp url,&nbsp name,&nbsp action)</h3>
+      <p class="padded"> To export grid to a file. This function need server side programming supported.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>type</b></td><td width="80%">. Export file type. Could be "xls" for MS Excel file, "pdf" for Adobe PDF file, "csv" for</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>fileName</b></td><td width="80%"> File name.</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>url</b></td><td width="80%"> Url specified to export data.</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>name</b></td><td width="80%"> Json name. Server side can get all the stuff by $_POST[name].</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>action</b></td><td width="80%"> Reserved.</td></tr></table></p>
+    <a name="focuscell"></a> 
+      <h3>focusCell(cell)</h3>
+      <p class="padded"> To focus a cell.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%">. Dom(td) of the cell to be focused.</td></tr></table></p>
+    <a name="foreachrow"></a> 
+      <h3>forEachRow(fn)</h3>
+      <p class="padded"> Excute function fn(row,record,i,grid) on each row.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Function</i></td><td width="10%"><b>fn</b></td><td width="80%"> Function to be executed. It takes the following parameters. row: The object of the row. record: The data record behine the row. i: Loop counter. grid: Grid object.</td></tr></table></p>
+    <a name="getcell"></a> 
+      <h3>getCell(rowNo,&nbsp colIdxOrId)</h3>
+      <p class="padded"> To get td object via row index and col index/id.</p>
+      <p class="padded">Return <span class="datatype">Object</span> - cell Tr(DOM) of a cell.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Number</i></td><td width="10%"><b>rowNo</b></td><td width="80%"> Row index.</td></tr><tr><td width="10%"><i>Number or String</i></td><td width="10%"><b>colIdxOrId</b></td><td width="80%"> Column index.</td></tr></table></p>
+    <a name="getcellvalue"></a> 
+      <h3>getCellValue(colNoIdTd,&nbsp recordOrRowNo)</h3>
+      <p class="padded"> Get cell value by specifying column id and row number.</p>
+      <p class="padded">Return <span class="datatype">Any</span> - New cell value.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>String</i></td><td width="10%"><b>colNoIdTd</b></td><td width="80%"> Id of column where cell is in.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>recordOrRowNo</b></td><td width="80%">  Number of row where cell is at.</td></tr></table></p>
+    <a name="getcolumn"></a> 
+      <h3>getColumn(colNoIdTd)</h3>
+      <p class="padded"> Get column object by column id or DOM object of cell.</p>
+      <p class="padded">Return <span class="datatype">Object</span> - Column object</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>colNoIdTd</b></td><td width="80%"> Column id or DOM object of cell.</td></tr></table></p>
+    <a name="getdeletedrecords"></a> 
+      <h3>getDeletedRecords()</h3>
+      <p class="padded"> To get all records deleted.</p>
+      <p class="padded">Return <span class="datatype">Array</span> - Array of records.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="getdimension"></a> 
+      <h3>getDimension()</h3>
+      <p class="padded"> To get grid width and height.</p>
+      <p class="padded">Return <span class="datatype">Object</span> - obj.width and obj.height</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="getdisplaycolumns"></a> 
+      <h3>getDisplayColumns(display)</h3>
+      <p class="padded"> To get columns displayed or invisible.</p>
+      <p class="padded">Return <span class="datatype">Array</span> - Column array. See Sigma.Column</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>display</b></td><td width="80%"> visible or invisible.</td></tr></table></p>
+    <a name="geteventtargets"></a> 
+      <h3>getEventTargets(event,&nbsp el)</h3>
+      <p class="padded"> To get event relevant info.</p>
+      <p class="padded">Return <span class="datatype">Object</span> - event relevant info</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>event</b></td><td width="80%"> Sigma.Grid.Event object. See Sigma.Grid.Event</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>el</b></td><td width="80%"> Sigma.Grid.EventTarget object. See Sigma.Grid.EventTarget</td></tr></table></p>
+    <a name="getfilterinfo"></a> 
+      <h3>getFilterInfo()</h3>
+      <p class="padded"> Get filter criteria info</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="getinsertedrecords"></a> 
+      <h3>getInsertedRecords()</h3>
+      <p class="padded"> To get all records deleted.</p>
+      <p class="padded">Return <span class="datatype">Array</span> - Array of records.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="getpageinfo"></a> 
+      <h3>getPageInfo(refresh)</h3>
+      <p class="padded"> To get pagging info.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>refresh</b></td><td width="80%"> Indecate to refresh navigator tool bar or not. Return pagging info.</td></tr></table></p>
+    <a name="getrecord"></a> 
+      <h3>getRecord(rowNoTdTr)</h3>
+      <p class="padded"> Get record by row number or DOM of td or tr.</p>
+      <p class="padded">Return <span class="datatype">Object</span> - Record object.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>rowNoTdTr</b></td><td width="80%"> Row number or DOM of td or tr.</td></tr></table></p>
+    <a name="getselectedrecords"></a> 
+      <h3>getSelectedRecords()</h3>
+      <p class="padded"> To get selected records.</p>
+      <p class="padded">Return <span class="datatype">Array</span> - Array of array/object. Records of selected rows.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="getskin"></a> 
+      <h3>getSkin()</h3>
+      <p class="padded"> To get skin name</p>
+      <p class="padded">Return <span class="datatype">String</span> - skin Skin name. Could be 'default', 'mac', 'vista' and 'pink' or self defined name.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="getupdatedrecords"></a> 
+      <h3>getUpdatedRecords()</h3>
+      <p class="padded"> To get all records updated.</p>
+      <p class="padded">Return <span class="datatype">Array</span> - Array of records.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="gotopage"></a> 
+      <h3>gotoPage(pageIdx)</h3>
+      <p class="padded"> To go to page pageIdx</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Number</i></td><td width="10%"><b>pageIdx</b></td><td width="80%"> Page index.</td></tr></table></p>
+    <a name="hidecelltooltip"></a> 
+      <h3>hideCellToolTip()</h3>
+      <p class="padded"> To hide tool tip for cell.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="hidedialog"></a> 
+      <h3>hideDialog()</h3>
+      <p class="padded"> To hide current active dialog.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="hidemask"></a> 
+      <h3>hideMask()</h3>
+      <p class="padded"> To hide mask.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="hidewaiting"></a> 
+      <h3>hideWaiting()</h3>
+      <p class="padded"> To hide a waiting bar.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="insert"></a> 
+      <h3>insert(record,&nbsp startEdit)</h3>
+      <p class="padded"> To insert a row into grid.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Array</i></td><td width="10%"><b>record</b></td><td width="80%"> Array of array/object. Data of row to be inserted. defaultRecord will be adopted if this parameter is null. See Sigma.Grid.defaultRecord</td></tr><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>startEdit</b></td><td width="80%"> To set true to start to edit row right after inserting.</td></tr></table></p>
+    <a name="movecolumn"></a> 
+      <h3>moveColumn(oldIndex,&nbsp newIndex,&nbsp ifreeze)</h3>
+      <p class="padded"> To move column oldIndex to new Index.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Number</i></td><td width="10%"><b>oldIndex</b></td><td width="80%"> Index of column to be moved.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>newIndex</b></td><td width="80%"> Index of new position.</td></tr><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>ifreeze</b></td><td width="80%"> Whether to freeze it.</td></tr></table></p>
+    <a name="printgrid"></a> 
+      <h3>printGrid()</h3>
+      <p class="padded"> To print grid. This function will popup a printer-choosing dialog box.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="refresh"></a> 
+      <h3>refresh(data)</h3>
+      <p class="padded"> To rebuild grid without data reloaded.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>data</b></td><td width="80%"> New content data.</td></tr></table></p>
+    <a name="refreshrow"></a> 
+      <h3>refreshRow(row,&nbsp record)</h3>
+      <p class="padded"> To refresh /update row.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Row Object.</td></tr><tr><td width="10%"><i>Array or Object</i></td><td width="10%"><b>record</b></td><td width="80%"> New record for update row. If not specified, just refresh the row.</td></tr></table></p>
+    <a name="reload"></a> 
+      <h3>reload(recount,&nbsp force)</h3>
+      <p class="padded"> To reload data from server side.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>recount</b></td><td width="80%"> Whether recount record number.</td></tr><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>force</b></td><td width="80%"> Flase for refresh only.</td></tr></table></p>
+    <a name="render"></a> 
+      <h3>render(container)</h3>
+      <p class="padded"> To render a grid.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>container</b></td><td width="80%"> The parent div or something</td></tr></table></p>
+    <a name="save"></a> 
+      <h3>save(onNav)</h3>
+      <p class="padded"> To save modifications to server side.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>onNav</b></td><td width="80%"> Whether pop up alter if nothing changed.</td></tr></table></p>
+    <a name="selectrow"></a> 
+      <h3>selectRow(row,&nbsp selected)</h3>
+      <p class="padded"> To remove row.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> DOM TR presenting a row.</td></tr><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>selected</b></td><td width="80%"> True for seleted, false for unselected.</td></tr></table></p>
+    <a name="setcellvalue"></a> 
+      <h3>setCellValue(colID,&nbsp recordOrRowNo,&nbsp newValue)</h3>
+      <p class="padded"> Set cell value by specifying column id and row number.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>String</i></td><td width="10%"><b>colID</b></td><td width="80%"> Id of column where cell is in.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>recordOrRowNo</b></td><td width="80%"> Number of row where cell is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>newValue</b></td><td width="80%"> New cell value.</td></tr></table></p>
+    <a name="setcontent"></a> 
+      <h3>setContent(respD)</h3>
+      <p class="padded"> To set grid data.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Array</i></td><td width="10%"><b>respD</b></td><td width="80%"> Array of array/object. Data records.</td></tr></table></p>
+    <a name="setdimension"></a> 
+      <h3>setDimension(newWidth,&nbsp newHeight,&nbsp isInit)</h3>
+      <p class="padded"> To set grid width and height.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Number</i></td><td width="10%"><b>newWidth</b></td><td width="80%"> New width.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>newHeight</b></td><td width="80%"> New height.</td></tr><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>isInit</b></td><td width="80%"> Indicate whether grid is initialized.</td></tr></table></p>
+    <a name="setfilterinfo"></a> 
+      <h3>setFilterInfo(fi)</h3>
+      <p class="padded"> To set filter info.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>fi</b></td><td width="80%"> Filter info object.</td></tr></table></p>
+    <a name="setpageinfo"></a> 
+      <h3>setPageInfo(pageInfo)</h3>
+      <p class="padded"> To update pagingo info.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>pageInfo</b></td><td width="80%"> Page info object.</td></tr></table></p>
+    <a name="setskin"></a> 
+      <h3>setSkin(skin)</h3>
+      <p class="padded"> To change skin by name</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>String</i></td><td width="10%"><b>skin</b></td><td width="80%"> Skin name. Could be 'default', 'mac', 'vista' and 'pink'.</td></tr></table></p>
+    <a name="showcelltooltip"></a> 
+      <h3>showCellToolTip(cell,&nbsp width)</h3>
+      <p class="padded"> To show tool tip for cell.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%"> On which cell tip will show.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>width</b></td><td width="80%"> Tip balloon width.</td></tr></table></p>
+    <a name="showdialog"></a> 
+      <h3>showDialog(type)</h3>
+      <p class="padded"> To show a dialog.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>String</i></td><td width="10%"><b>type</b></td><td width="80%"> Could be 'filter' or 'chart'.</td></tr></table></p>
+    <a name="showmask"></a> 
+      <h3>showMask(trp)</h3>
+      <p class="padded"> To show/hide a mask.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>trp</b></td><td width="80%"> True for show, false for hide.</td></tr></table></p>
+    <a name="showwaiting"></a> 
+      <h3>showWaiting()</h3>
+      <p class="padded"> To show a waiting bar.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="sortgrid"></a> 
+      <h3>sortGrid(sortInfo)</h3>
+      <p class="padded"> To sort grid by specifed rules.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Array</i></td><td width="10%"><b>sortInfo</b></td><td width="80%">. Array of sortInfo.</td></tr></table></p>
+  </div>
+  <a name="event"></a><h2>Events</h2>
+<table class="items-list"><tr><td><a href="sigma_grid.html#aftercolumnresize">afterColumnResize</a></td><td><a href="sigma_grid.html#afteredit">afterEdit</a></td><td><a href="sigma_grid.html#afterrowselect">afterRowSelect</a></td><td><a href="sigma_grid.html#beforecolumnmove">beforeColumnMove</a></td><tr><td><a href="sigma_grid.html#beforedelete">beforeDelete</a></td><td><a href="sigma_grid.html#beforeedit">beforeEdit</a></td><td><a href="sigma_grid.html#beforeexport">beforeExport</a></td><td><a href="sigma_grid.html#beforeinsert">beforeInsert</a></td><tr><td><a href="sigma_grid.html#beforeload">beforeLoad</a></td><td><a href="sigma_grid.html#beforerowselect">beforeRowSelect</a></td><td><a href="sigma_grid.html#beforesave">beforeSave</a></td><td><a href="sigma_grid.html#beforeupdate">beforeUpdate</a></td><tr><td><a href="sigma_grid.html#customrowattribute">customRowAttribute</a></td><td><a href="sigma_grid.html#exportfailure">exportFailure</a></td><td><a href="sigma_grid.html#loadfailure">loadFailure</a></td><td><a href="sigma_grid.html#loadresponsehandler">loadResponseHandler</a></td><tr><td><a href="sigma_grid.html#oncellclick">onCellClick</a></td><td><a href="sigma_grid.html#oncelldblclick">onCellDblClick</a></td><td><a href="sigma_grid.html#oncomplete">onComplete</a></td><td><a href="sigma_grid.html#oncontextmenu">onContextMenu</a></td><tr><td><a href="sigma_grid.html#onheadclick">onHeadClick</a></td><td><a href="sigma_grid.html#onkeydown">onKeyDown</a></td><td><a href="sigma_grid.html#onmousemove">onMouseMove</a></td><td><a href="sigma_grid.html#onmouseout">onMouseOut</a></td><tr><td><a href="sigma_grid.html#onmouseover">onMouseOver</a></td><td><a href="sigma_grid.html#onresize">onResize</a></td><td><a href="sigma_grid.html#onrowcheck">onRowCheck</a></td><td><a href="sigma_grid.html#onrowclick">onRowClick</a></td><tr><td><a href="sigma_grid.html#onrowdblclick">onRowDblClick</a></td><td><a href="sigma_grid.html#savefailure">saveFailure</a></td><td><a href="sigma_grid.html#saveresponsehandler">saveResponseHandler</a></td></table>  <div class="list">
+    <a name="aftercolumnresize"></a> 
+      <h3>afterColumnResize(<i></i>&nbsp colObj,<i></i>&nbsp newWidth,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired after one column is resized.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>colObj</b></td><td width="80%"> Column object resized.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>newWidth</b></td><td width="80%"> Column new width.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid of the column resized.</td></tr></table></p>
+    <a name="afteredit"></a> 
+      <h3>afterEdit(<i></i>&nbsp value,<i></i>&nbsp oldValue,<i></i>&nbsp record,<i></i>&nbsp col,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired before cell is closed after editing.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Any</i></td><td width="10%"><b>value</b></td><td width="80%"> New value of the cell.</td></tr><tr><td width="10%"><i>Any</i></td><td width="10%"><b>oldValue</b></td><td width="80%"> Old value of the cell.</td></tr><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>col</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid object.</td></tr></table></p>
+    <a name="afterrowselect"></a> 
+      <h3>afterRowSelect(<i></i>&nbsp value,<i></i>&nbsp record,<i></i>&nbsp cell,<i></i>&nbsp row,<i></i>&nbsp colNo,<i></i>&nbsp columnObj,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired after end user selects one row.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Any</i></td><td width="10%"><b>value</b></td><td width="80%"> Value of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row to be selected.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%"> Dom of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom(tr) of row to be selected.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>colNo</b></td><td width="80%"> Index of the column where mouse pointer is at. Base on 0.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>columnObj</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid of the column resized.</td></tr></table></p>
+    <a name="beforecolumnmove"></a> 
+      <h3>beforeColumnMove(<i></i>&nbsp oldIndex,<i></i>&nbsp newIndex)</h3>
+      <p class="padded">Fired before column being moved.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent column from being moved.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Number</i></td><td width="10%"><b>oldIndex</b></td><td width="80%"> Index of column to be moved.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>newIndex</b></td><td width="80%"> Index of new position.</td></tr></table></p>
+    <a name="beforedelete"></a> 
+      <h3>beforeDelete(<i></i>&nbsp Data,<i></i>&nbsp row,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired before an existing row is to be removed from grid.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent row from being removed.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Record or Object</i></td><td width="10%"><b>Data</b></td><td width="80%"> record behind the row.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom(td) of row to be remove.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid object.</td></tr></table></p>
+    <a name="beforeedit"></a> 
+      <h3>beforeEdit(<i></i>&nbsp value,<i></i>&nbsp record,<i></i>&nbsp col,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired before cell is open for editing.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent cell being open for editing.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Any</i></td><td width="10%"><b>value</b></td><td width="80%"> Value of the cell to be open for editing.</td></tr><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>col</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid Object.</td></tr></table></p>
+    <a name="beforeexport"></a> 
+      <h3>beforeExport(<i></i>&nbsp type,<i></i>&nbsp fileName,<i></i>&nbsp url,<i></i>&nbsp name,<i></i>&nbsp action,<i></i>&nbsp fileName)</h3>
+      <p class="padded">Fired before Data is sent to server side for exporting.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent data from being exported.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>String</i></td><td width="10%"><b>type</b></td><td width="80%"> File type, could be xml/pdf/csv/xls.</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>fileName</b></td><td width="80%"> File name.</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>url</b></td><td width="80%"> Url specified to export data.</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>name</b></td><td width="80%"> Json name. Server side can get all the stuff by $_POST[name].</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>action</b></td><td width="80%"> Reserved.</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>fileName</b></td><td width="80%"> File name.</td></tr></table></p>
+    <a name="beforeinsert"></a> 
+      <h3>beforeInsert(<i></i>&nbsp Data)</h3>
+      <p class="padded">Fired before a new row is to be added to the grid.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent row from being added.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Record or Object</i></td><td width="10%"><b>Data</b></td><td width="80%"> record behind the row.</td></tr></table></p>
+    <a name="beforeload"></a> 
+      <h3>beforeLoad(<i></i>&nbsp requestParameter)</h3>
+      <p class="padded">Fired before grid is to about to load data from server side.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent grid from loading data from server side.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>requestParameter</b></td><td width="80%"> See DataExchange.Loading.</td></tr></table></p>
+    <a name="beforerowselect"></a> 
+      <h3>beforeRowSelect(<i></i>&nbsp record,<i></i>&nbsp row,<i></i>&nbsp rowNo,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired before end user selects one row.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent row from being selected.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row to be selected.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom(tr) of row to be selected.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>rowNo</b></td><td width="80%"> Index of the row where mouse pointer is at. Base on 0..</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid of the column resized.</td></tr></table></p>
+    <a name="beforesave"></a> 
+      <h3>beforeSave(<i></i>&nbsp requestParameter)</h3>
+      <p class="padded">Fired before changed data is to be posted to server side.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent data from being posted to server side.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>requestParameter</b></td><td width="80%"> See DataExchange.Saving.</td></tr></table></p>
+    <a name="beforeupdate"></a> 
+      <h3>beforeUpdate(<i></i>&nbsp Data,<i></i>&nbsp fieldName,<i></i>&nbsp newValue)</h3>
+      <p class="padded">Fired before one record will be updated with a new value.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent record to be updated.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Record or Object</i></td><td width="10%"><b>Data</b></td><td width="80%"> record to be updated.</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>fieldName</b></td><td width="80%"> Name of field to be updated.</td></tr><tr><td width="10%"><i>Any</i></td><td width="10%"><b>newValue</b></td><td width="80%"> New value of the cell updated.</td></tr></table></p>
+    <a name="customrowattribute"></a> 
+      <h3>customRowAttribute(<i></i>&nbsp record,<i></i>&nbsp rowNo,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when row style is to specified.</p>
+      <p class="padded">Return <span class="datatype">String</span> - Css style string. For example : "background-color:red;"</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row where the cell is at.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>rowNo</b></td><td width="80%"> Index of the row.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid object.</td></tr></table></p>
+    <a name="exportfailure"></a> 
+      <h3>exportFailure(<i></i>&nbsp respD,<i></i>&nbsp respD,<i></i>&nbsp e)</h3>
+      <p class="padded">Fired when failing to export data to xml/excel/pdf etc. The following is a default implementaion.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>String</i></td><td width="10%"><b>respD</b></td><td width="80%">.exception record to be updated.</td></tr><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>respD</b></td><td width="80%">.success Name of field to be updated.</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>e</b></td><td width="80%">.message Error message description.</td></tr></table></p>
+    <a name="loadfailure"></a> 
+      <h3>loadFailure(<i></i>&nbsp respD,<i></i>&nbsp respD,<i></i>&nbsp e)</h3>
+      <p class="padded">Fired when failing to load data from server. The following is a default implementaion.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>String</i></td><td width="10%"><b>respD</b></td><td width="80%">.exception record to be updated.</td></tr><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>respD</b></td><td width="80%">.success Name of field to be updated.</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>e</b></td><td width="80%">.message Error message description.</td></tr></table></p>
+    <a name="loadresponsehandler"></a> 
+      <h3>loadResponseHandler(<i></i>&nbsp response,<i></i>&nbsp requestParameter)</h3>
+      <p class="padded">This function is a call back function to deal with the received content from server side. Developer could do some data translation work within this function.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>String</i></td><td width="10%"><b>response</b></td><td width="80%"> Response plain text content.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>requestParameter</b></td><td width="80%"> See DataExchange.Loading.</td></tr></table></p>
+    <a name="oncellclick"></a> 
+      <h3>onCellClick(<i></i>&nbsp value,<i></i>&nbsp record,<i></i>&nbsp cell,<i></i>&nbsp row,<i></i>&nbsp colNo,<i></i>&nbsp columnObj,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when end user click one cell.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent default behavior.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Any</i></td><td width="10%"><b>value</b></td><td width="80%"> Value of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row where the cell is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%"> Dom(td) of the cell.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom of row where the cell is at.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>colNo</b></td><td width="80%"> Index of the column where the cell is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>columnObj</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid of the cell clicked on.</td></tr></table></p>
+    <a name="oncelldblclick"></a> 
+      <h3>onCellDblClick(<i></i>&nbsp value,<i></i>&nbsp record,<i></i>&nbsp cell,<i></i>&nbsp row,<i></i>&nbsp colNo,<i></i>&nbsp columnObj,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when end user double click on one cell.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent default behavior.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Any</i></td><td width="10%"><b>value</b></td><td width="80%"> Value of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row where the cell is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%"> Dom(td) of the cell.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom of row where the cell is at.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>colNo</b></td><td width="80%"> Index of the column where the cell is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>columnObj</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid of the cell clicked on.</td></tr></table></p>
+    <a name="oncomplete"></a> 
+      <h3>onComplete(<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when grid is completely loaded. Refresh/sort/paging will also fire this event</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid of the column resized.</td></tr></table></p>
+    <a name="oncontextmenu"></a> 
+      <h3>onContextMenu(<i></i>&nbsp value,<i></i>&nbsp record,<i></i>&nbsp cell,<i></i>&nbsp row,<i></i>&nbsp colNo,<i></i>&nbsp rowNo,<i></i>&nbsp columnObj,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when end user double click on one cell.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent default behavior.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Any</i></td><td width="10%"><b>value</b></td><td width="80%"> Value of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row where the cell is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%"> Dom(td) of the cell.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom of row where the cell is at.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>colNo</b></td><td width="80%"> Index of the column where the cell is at.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>rowNo</b></td><td width="80%"> Index of the row where the cell is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>columnObj</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid of the cell clicked on.</td></tr></table></p>
+    <a name="onheadclick"></a> 
+      <h3>onHeadClick(<i></i>&nbsp event,<i></i>&nbsp headCell,<i></i>&nbsp colObj,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when end user click column header.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent default behavior.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>event</b></td><td width="80%"> See Sigma.Grid.Event.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>headCell</b></td><td width="80%"> Dom of the head cell.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>colObj</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid of the header clicked on.</td></tr></table></p>
+    <a name="onkeydown"></a> 
+      <h3>onKeyDown(<i></i>&nbsp event)</h3>
+      <p class="padded">Fired when end user press a key down.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent grid default behavior.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>event</b></td><td width="80%"> Browser raw event object.</td></tr></table></p>
+    <a name="onmousemove"></a> 
+      <h3>onMouseMove(<i></i>&nbsp value,<i></i>&nbsp record,<i></i>&nbsp cell,<i></i>&nbsp row,<i></i>&nbsp colNo,<i></i>&nbsp rowNo,<i></i>&nbsp columnObj,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when mouse pointer is moving over grid.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Any</i></td><td width="10%"><b>value</b></td><td width="80%"> Value of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%"> Dom(td) of the cell.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom of row where mouse pointer is at.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>colNo</b></td><td width="80%"> Index of the column where mouse pointer is at.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>rowNo</b></td><td width="80%"> Index of the row where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>columnObj</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid object.</td></tr></table></p>
+    <a name="onmouseout"></a> 
+      <h3>onMouseOut(<i></i>&nbsp value,<i></i>&nbsp record,<i></i>&nbsp cell,<i></i>&nbsp row,<i></i>&nbsp colNo,<i></i>&nbsp rowNo,<i></i>&nbsp columnObj,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when mouse pointer is to be out of grid.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Any</i></td><td width="10%"><b>value</b></td><td width="80%"> Value of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%"> Dom(td) of the cell.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom of row where mouse pointer is at.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>colNo</b></td><td width="80%"> Index of the column where mouse pointer is at.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>rowNo</b></td><td width="80%"> Index of the row where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>columnObj</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid object.</td></tr></table></p>
+    <a name="onmouseover"></a> 
+      <h3>onMouseOver(<i></i>&nbsp value,<i></i>&nbsp record,<i></i>&nbsp cell,<i></i>&nbsp row,<i></i>&nbsp colNo,<i></i>&nbsp columnObj,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when mouse pointer is over grid.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Any</i></td><td width="10%"><b>value</b></td><td width="80%"> Value of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%"> Dom(td) of the cell.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom of row where mouse pointer is at.</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>colNo</b></td><td width="80%"> Index of the column where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>columnObj</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid object.</td></tr></table></p>
+    <a name="onresize"></a> 
+      <h3>onResize()</h3>
+      <p class="padded">Fired when width or height of grid changes.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"></table></p>
+    <a name="onrowcheck"></a> 
+      <h3>onRowCheck(<i></i>&nbsp row,<i></i>&nbsp chk,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when one row is to be checked or unchecked.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom of row where mouse pointer is at.</td></tr><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>chk</b></td><td width="80%"> If row is to be checked or unchecked.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid object.</td></tr></table></p>
+    <a name="onrowclick"></a> 
+      <h3>onRowClick(<i></i>&nbsp value,<i></i>&nbsp record,<i></i>&nbsp cell,<i></i>&nbsp row,<i></i>&nbsp colNo,<i></i>&nbsp columnObj,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when end user double click on one row.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent default behavior.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Any</i></td><td width="10%"><b>value</b></td><td width="80%"> Value of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%"> Dom(td) of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom of the row .</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>colNo</b></td><td width="80%"> Index of the column where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>columnObj</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid of the row clicked on.</td></tr></table></p>
+    <a name="onrowdblclick"></a> 
+      <h3>onRowDblClick(<i></i>&nbsp value,<i></i>&nbsp record,<i></i>&nbsp cell,<i></i>&nbsp row,<i></i>&nbsp colNo,<i></i>&nbsp columnObj,<i></i>&nbsp grid)</h3>
+      <p class="padded">Fired when end user double click on one row.</p>
+      <p class="padded">Return <span class="datatype">Boolean</span> - Return false to prevent default behavior.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>Any</i></td><td width="10%"><b>value</b></td><td width="80%"> Value of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object or array</i></td><td width="10%"><b>record</b></td><td width="80%"> Data record of the row.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>cell</b></td><td width="80%"> Dom(td) of the cell where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>row</b></td><td width="80%"> Dom of the row .</td></tr><tr><td width="10%"><i>Number</i></td><td width="10%"><b>colNo</b></td><td width="80%"> Index of the column where mouse pointer is at.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>columnObj</b></td><td width="80%"> Column object.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>grid</b></td><td width="80%"> Grid of the row double clicked on.</td></tr></table></p>
+    <a name="savefailure"></a> 
+      <h3>saveFailure(<i></i>&nbsp respD,<i></i>&nbsp respD,<i></i>&nbsp e)</h3>
+      <p class="padded">Fired when failing to load data from server. The following is a default implementaion.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>String</i></td><td width="10%"><b>respD</b></td><td width="80%">.exception record to be updated.</td></tr><tr><td width="10%"><i>Boolean</i></td><td width="10%"><b>respD</b></td><td width="80%">.success Name of field to be updated.</td></tr><tr><td width="10%"><i>String</i></td><td width="10%"><b>e</b></td><td width="80%">.message Error message description.</td></tr></table></p>
+    <a name="saveresponsehandler"></a> 
+      <h3>saveResponseHandler(<i></i>&nbsp response,<i></i>&nbsp requestParameter)</h3>
+      <p class="padded">This function is a call back function to deal with the received content from server side. Developer could do some data translation work within this function.</p>
+      <p class="padded"><table cellspacing="3" width="90%" class="parameter-table"><tr><td width="10%"><i>String</i></td><td width="10%"><b>response</b></td><td width="80%"> Response plain text content.</td></tr><tr><td width="10%"><i>Object</i></td><td width="10%"><b>requestParameter</b></td><td width="80%"> See DataExchange.Saving.</td></tr></table></p>
+  </div>
+</div>
+
+
+    </body>
+</html>

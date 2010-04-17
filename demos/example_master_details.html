@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Correlation between grid - Sigma Ajax data grid control sample</title>
+<meta http-equiv="Content-Language" content="en-us" /> 
+<meta name="keywords" content="dhtml grid, AJAX grid, relationship" >
+<meta name="description" content="How to build relationship between grid " >
+
+<script src="highlight/jssc3.js" type="text/javascript"></script>
+<link href="highlight/style.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css" media="all">@import "./css/doc_no_left.css";</style>
+<script src="../../../js/menu.js" type="text/javascript"></script>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="../grid/calendar/calendar-blue.css"  />
+<script type="text/javascript" src="../grid/calendar/calendar.js"></script>
+<script type="text/javascript" src="../grid/calendar/calendar-setup.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../grid/gt_grid.css" />
+<link rel="stylesheet" type="text/css" href="../grid/skin/vista/skinstyle.css" />
+<link rel="stylesheet" type="text/css" href="../grid/skin/mac/skinstyle.css" />
+<link rel="stylesheet" type="text/css" href="../grid/skin/pink/skinstyle.css" />
+<script type="text/javascript" src="./data/test_data.js"></script>
+<script type="text/javascript" src="../grid/gt_msg_en.js"></script>
+<script type="text/javascript" src="../grid/gt_const.js"></script>
+<script type="text/javascript" src="../grid/gt_grid_all.js"></script>
+<script type="text/javascript" src="../grid/flashchart/fusioncharts/FusionCharts.js"></script>
+
+    
+    
+<script type="text/javascript" >
+
+
+function example_renderTaxFree(value ,record,columnObj,grid,colNo,rowNo){
+				if(value==0) return "<img src='./images/unchecked.gif'>";
+				return "<img src='./images/checked.gif'>";
+
+}
+
+function example_renderDiscount(value ,record,columnObj,grid,colNo,rowNo){
+        var i = Math.round(value / 0.4 * 5);
+        if(i>5)i=5;if(i<1)i=1;
+				return "<IMG SRC=\"./images/five_star" + i + ".gif\" />"
+
+
+}
+
+///////////////////////////////////////
+
+var grid_demo_id = "myGrid1" ;
+var grid_details_id = "myGrid2";
+
+
+var dsOption= {
+
+	fields :[
+		{name : 'no'  },
+		{name : 'country'  },
+		{name : 'customer'  },
+		{name : 'employee'  },
+		{name : 'bill2005' ,type: 'float' },
+		{name : 'bill2006' ,type: 'float' },
+		{name : 'bill2007' ,type: 'float' },
+		{name : 'bill2008' ,type: 'float' },
+		{name : 'orderDate' ,type:'date'  }
+		
+	],
+  uniqueField : 0 ,
+	recordType : 'object'
+}
+
+var dsOptionDetails= {
+
+	fields :[
+		{name : 'no'  },
+		{name : 'product'  },
+		{name : 'unitPrice' ,type:'float'  },
+		{name : 'quantity' ,type: 'int' },
+		{name : 'discount' ,type: 'float'  },
+		{name : 'taxFree'  ,type: 'int'  },
+		{name : 'taxRate'  ,type: 'float'  },
+		
+		{name : 'shipTo', type: 'int'},
+		{name : 'shipment'},
+		{name : 'note'},
+		
+		{name : 'tax',type: 'float' , initValue : function(record){
+        var avg = record[5]*record[6];
+				return avg.toFixed(2);
+    }},
+		{name : 'totalPrice' ,type: 'float' , initValue : function(record){
+        var avg = record[2]*record[3]*record[4]*record[5]*record[6];
+				return avg.toFixed(2);
+    }}
+	],
+
+	recordType : 'array'
+}
+
+var colsOption = [
+     {id: 'chk' ,isCheckColumn : true, filterable: false, exportable:false},
+     {id: 'no' , header: "Order No" , width :60  },
+     {id: 'employee' , header: "Employee" , width :80  },
+	   {id: 'country' , header: "Country" , width :70  },
+	   {id: 'customer' , header: "Customer" , width :80  },
+	   {id: 'bill2005' , header: "2005" , width :60, inChart :true, chartColor : 'eecc99'},
+	   {id: 'bill2006' , header: "2006" , width :60, inChart :true, chartColor : '66eeaa'  },
+	   {id: 'bill2007' , header: "2007" , width :60, inChart :true, chartColor : 'd65555'  },
+	   {id: 'bill2008' , header: "2008" , width :60, inChart :true, chartColor : 'eeaa33'  },
+	   {id: 'orderDate' , header: "Delivery Date" , width :100}
+       
+];
+ 
+var colsOptionDetails = [
+     {id: 'no' , header: "Item No" , width :60  , editor:{type:"text"},
+      frozen : true},
+	   {id: 'product' , header: "Product" , width :100,
+	   grouped : true , frozen : true , sortOrder : 'asc',
+     editor : { type :"select" ,
+     options : {"Abalone":"Abalone","Amber":"Amber","Amethyst":"Amethyst","Aquamarine":"Aquamarine",
+                "Cameos":"Cameos","Citrine":"Citrine","Coral":"Coral","Crystal":"Crystal","Cubic Zirconia":"Cubic Zirconia",
+                "Emerald":"Emerald","Enamel":"Enamel","Garnet":"Garnet","Glass":"Glass","Moissanite":"Moissanite",
+                "Onyx":"Onyx","Opal":"Opal","Pearl":"Pearl"} ,defaultText : '' }},
+	   {id: 'unitPrice' , header: "Unit Price" , width :60 ,
+     editor: { type :"text" ,validRule : ['R','F'] } },
+	   {id: 'quantity' , header: "Quantity" , width :80, 
+     editor: { type :"text" ,validRule : ['R'] } },
+	   {id: 'discount' , header: "Discount" , width :100 ,renderer : example_renderDiscount,
+     editor: { type :"text" ,validRule : ['R','F'] } },
+	   
+		{id: 'taxFree' , header: "Tax Free" , width :60 ,renderer : example_renderTaxFree },
+		{id: 'taxRate' , header: "Tax Rate" , width :60 ,
+    editor: { type :"text" ,validRule : ['R','F'] } },
+		{id: 'tax' , header: "Tax" , width :60},
+		{id: 'totalPrice' , header: "Total Price" , width :60, align:"right"
+		},
+		{id: 'shipTo' , header: "Ship To" , width :100  },
+		{id: 'shipment' , header: "Shipment" , width :100  },
+		{id: 'note' , header: "Note" , width :150  }
+		
+		
+ ];
+
+
+
+
+function masterCompleted(grid){
+    var colObj=grid.columnMap['country'];
+	  colObj.group();
+}
+
+var gridOption={
+	id : grid_demo_id,
+	width: "700",  
+	height: "350",  	
+	container : 'gridbox', 
+	replaceContainer : true, 
+	dataset : dsOption ,
+	columns : colsOption ,
+	pageSizeList : [5,10,15,20],
+	customHead : 'myHead',
+	onCellClick  : function(value, record , cell, row,  colNO, rowNO,columnObj,grid){
+		var no = record["no"]>"070-19"?"070-19":record["no"];
+    var grid=Sigma.$grid(grid_details_id);
+    grid.loadURL = "./data/" + no + ".js";
+    grid.reload();
+	},
+	SigmaGridPath : '../grid/',
+	loadURL : './export_php/testMasterList.php',
+	exportURL : './export_php/testMasterList.php?export=true',
+	exportFileName : 'sales-master-report',
+	remotePaging : false,
+	defaultRecord : ["","","","",0,0,0,0,"2008-01-01"],
+	pageSize:20,
+	toolbarContent : 'nav goto | pagesize | reload | print csv xls xml pdf filter chart | state'
+};
+
+
+var gridOptionDetails={
+	id : grid_details_id,
+	loadUrl : './data/010-0.js',
+	width: "700",
+	height: "260", 	
+	container : 'gridboxDetails', 
+	replaceContainer : true, 
+	editable : true,
+  groupable : true,
+	pageSizeList : [5,10,15,20],
+	dataset : dsOptionDetails ,
+	columns : colsOptionDetails ,
+	clickStartEdit : true ,
+	defaultRecord : ["","",0,0,0.0,0,0.0,"Customer","UPS",""],
+	pageSize:30,
+	toolbarContent : 'reload | add del | print | state',
+	showGridMenu : true,
+	allowCustomSkin	: true ,
+	allowFreeze	: true ,
+	allowHide	: true ,
+	allowGroup	: true,
+	customRowAttribute : function(record,rn,grid){
+		if (record[11]>80){
+			return 'style="height:50px; background-color:#ffddcc"';
+		}
+	}
+};
+
+var mygrid=new Sigma.Grid( gridOption );
+var mygridDetails = new Sigma.Grid(gridOptionDetails);
+		
+
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid) );
+Sigma.Util.onLoad( Sigma.Grid.render(mygridDetails) );
+
+//////////////////////////////////////////////////////////
+
+function unlockAllColumn(){
+	Sigma.Column.unlockAllColumn(grid_demo_id);
+}
+
+function lockColumnNAllBefore(){
+	Sigma.Column.lockColumnNAllBefore(grid_demo_id,Sigma.$("idx2").value);
+}
+
+
+
+function showGrid(){
+
+if (Sigma.$('bigbox').style.display!="none") {
+	Sigma.$('bigbox').style.display="none";
+}else{
+Sigma.$('bigbox').style.display='';
+
+// must call onShow() !!!!
+mygrid.onShow();
+}
+}
+
+
+</script>
+</head>
+<body>
+
+<div id="page-container">
+  <div id="main-nav">
+            <div id="logo" style="margin: 10px">
+                                        <a href="http://www.sigmawidgets.com/">
+                                            <img border="0"  src="images/logo.gif"/></a></div>
+                                    <div id="menu">
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/">Home</a></div>
+                                        <div class="menuLink" id="menu1">
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/">Products </a>
+                                        </div>
+                                        <div class="menuLink" id="menu2">
+                                            <a href="http://www.sigmawidgets.com/company/offshore.html">Company &amp;Services</a>
+                                        </div>
+                                        <div class="menuLink" id="menu3" >
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/demos/"><font color="ff8c00">Live Demo</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/download.html"><font color="ff8c00">Download</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/forum"><font color="ff8c00">Forum</font></a>
+                                        </div>
+                                    </div>
+</div>
+
+   
+  <div id="header">
+  <h1>
+      Product - Sigma Grid - Sample </h1>
+  </div>
+
+  <div id="content">
+    
+	  <h2>Correlation  between grids</h2>
+      <p>
+          The following sigma classic sample shows how to build a master/details relationship
+          between two grid. 
+      </p>
+    <div id="bigbox" style="margin:15px;display:!none;">
+      <div id="gridbox" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:200px;width:700px;" ></div>
+    </div>
+    <div id="bigboxDetails" style="margin:15px;display:!none;">  
+      <div id="gridboxDetails" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:250px;width:700px;" ></div>
+    </div>
+    
+
+    <table id="myHead" style="display:none">
+<tr>
+  <td rowspan="2" columnId='chk' resizable='false'>
+  <input id="g1_chk" type="checkbox"/></td>
+	<td rowspan="2" columnId='no' resizable='false'>Order No</td>
+	<td rowspan="2" columnId='employee' resizable='false'>Employee</td>
+  <td colspan="7">Order Info</td>
+</tr>
+<tr>
+	<td columnId='country'>Country</td>
+	<td columnId='customer'>Customer<img src="./images/customer.gif"/></td>
+	<td columnId='bill2005'>2005</td>
+	<td columnId='bill2006'>2006</td>
+	<td columnId='bill2007'>2007</td>
+	<td columnId='bill2008'>2008</td>
+	<td columnId='orderDate'>Ship Date</td>
+</tr>
+</table>
+    
+    <p>
+                                                                       
+    </p>
+    <p> The first grid contains order no, employee name and other order
+          information. With first grid, you can
+    </p>
+      <ul>
+          <li>View orders page by page.</li>
+          <li>View annual orders in bar diagram by clicking diagram button. </li>
+          <li>View order details by click one order items.</li>
+          <li>Print hard copy by clicking print button. </li>
+      </ul>
+      <p>
+          The second grid contains order details information, such as quantity, unit price,
+          discount. With the second grid, you can
+
+      </p><ul>
+          <li>View order details with item no and product frozen. And you can also frozen any
+              columns.&nbsp;</li>
+          <li>Group order items by any columns. By default, items are separated by product category.
+          </li>
+          <li>Sort oder items by any columns.</li>
+          <li>Print hard copy by clicking print button. </li>
+          
+      </ul>
+      <h2>Related Links</h2>
+      <p><a href="demo_list.html">Demos List</a> - <a href="example_filter_dynamic_search.html">Dynamic search</a> - <a href="example_formular.html">Math formulas for cells</a>
+                                                 - <a href="example_grid_hide_show.html">Show and hide grid</a> -                                                        <a href="example_grid_menu.html">Main menu</a> -                          <a href="example_grid_resize.html">Resizable grid</a> -  
+                                                <a href="example_style_skin.html">CSS Based Themes</a>
+      </p>
+       
+  </div>
+  
+  
+
+  <div id="footer">All contents are (c) Copyright 2005 - 2008, Sigma Software Inc. All rights Reserved</div>
+</div>
+
+</body>
+</html>

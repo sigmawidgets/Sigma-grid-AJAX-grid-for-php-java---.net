@@ -1,0 +1,399 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Sigma Grid API Reference</title>
+        <link rel="stylesheet" href="img/shared.css" type="text/css">
+        <script src='highlight/jssc3.js' type='text/javascript'></script>
+        <link href='highlight/style.css' rel='stylesheet' type='text/css' />
+        <script type="text/javascript" src="img/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript">
+        (function($){
+$(document).ready(
+	function()
+	{
+		tree = $('li.index');
+		$('li', tree.get(0)).each(
+			function()
+			{
+				subbranch = $('ul', this);
+				if (subbranch.size() > 0) {
+					if (subbranch.eq(0).css('display') == 'none') {
+						$(this).prepend('<img src="img/bullet_toggle_plus.png" width="16" height="16" class="expandImage" />');
+					} else {
+						$(this).prepend('<img src="img/bullet_toggle_minus.png" width="16" height="16" class="expandImage" />');
+					}
+				} else {
+					//$(this).prepend('<img src="img/spacer.gif" width="16" height="16" class="expandImage" />');
+				}
+			}
+		);
+		$('img.expandImage', tree.get(0)).click(
+			function()
+			{
+				if (this.src.indexOf('spacer') == -1) {
+					subbranch = $('ul', this.parentNode).eq(0);
+					if (subbranch.css('display') == 'none') {
+						subbranch.show();
+						this.src = 'img/bullet_toggle_minus.png';
+					} else {
+						subbranch.hide();
+						this.src = 'img/bullet_toggle_plus.png';
+					}
+				}
+			}
+		);
+		
+		jssc.colorAll("code");
+		
+	}
+);
+
+})(jQuery);
+
+</script>
+
+
+    </head>
+    <body>
+<h1> SortInfo Reference</h1>
+<div class="index">
+<ul>
+<li class="class"><a href="sigma.html">Sigma</a>
+  <ul>
+    <li class="group"><a href="sigma.html#method">Method</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma.html#$grid">$grid</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_grid.html">Sigma.Grid</a>
+  <ul>
+    <li class="group"><a href="sigma_grid.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_grid.html#config_allowfreeze">allowFreeze</a></li>
+        <li class="config"><a href="sigma_grid.html#config_allowgroup">allowGroup</a></li>
+        <li class="config"><a href="sigma_grid.html#config_allowhide">allowHide</a></li>
+        <li class="config"><a href="sigma_grid.html#config_clickstartedit">clickStartEdit</a></li>
+        <li class="config"><a href="sigma_grid.html#config_container">container</a></li>
+        <li class="config"><a href="sigma_grid.html#config_customhead">customHead</a></li>
+        <li class="config"><a href="sigma_grid.html#config_dataset">dataset</a></li>
+        <li class="config"><a href="sigma_grid.html#config_defaultrecord">defaultRecord</a></li>
+        <li class="config"><a href="sigma_grid.html#config_height">height</a></li>
+        <li class="config"><a href="sigma_grid.html#config_id">id</a></li>
+        <li class="config"><a href="sigma_grid.html#config_jsonparamname">jsonParamName</a></li>
+        <li class="config"><a href="sigma_grid.html#config_language">language</a></li>
+        <li class="config"><a href="sigma_grid.html#config_lightoverrow">lightOverRow</a></li>
+        <li class="config"><a href="sigma_grid.html#config_loadurl">loadURL</a></li>
+        <li class="config"><a href="sigma_grid.html#config_minheight">minHeight</a></li>
+        <li class="config"><a href="sigma_grid.html#config_minwidth">minWidth</a></li>
+        <li class="config"><a href="sigma_grid.html#config_pagesize">pageSize</a></li>
+        <li class="config"><a href="sigma_grid.html#config_pagesizelist">pageSizeList</a></li>
+        <li class="config"><a href="sigma_grid.html#config_reloadaftersave">reloadAfterSave</a></li>
+        <li class="config"><a href="sigma_grid.html#config_remotefilter">remoteFilter</a></li>
+        <li class="config"><a href="sigma_grid.html#config_remotepaging">remotePaging</a></li>
+        <li class="config"><a href="sigma_grid.html#config_remotesort">remoteSort</a></li>
+        <li class="config"><a href="sigma_grid.html#config_replacecontainer">replaceContainer</a></li>
+        <li class="config"><a href="sigma_grid.html#config_saveurl">saveURL</a></li>
+        <li class="config"><a href="sigma_grid.html#config_selectrowbycheck">selectRowByCheck</a></li>
+        <li class="config"><a href="sigma_grid.html#config_showgridmenu">showGridMenu</a></li>
+        <li class="config"><a href="sigma_grid.html#config_showindexcolumn">showIndexColumn</a></li>
+        <li class="config"><a href="sigma_grid.html#config_skin">skin</a></li>
+        <li class="config"><a href="sigma_grid.html#config_striperows">stripeRows</a></li>
+        <li class="config"><a href="sigma_grid.html#config_submitupdatedfields">submitUpdatedFields</a></li>
+        <li class="config"><a href="sigma_grid.html#config_toolbarcontent">toolbarContent</a></li>
+        <li class="config"><a href="sigma_grid.html#config_toolbarposition">toolbarPosition</a></li>
+        <li class="config"><a href="sigma_grid.html#config_transparentmask">transparentMask</a></li>
+        <li class="config"><a href="sigma_grid.html#config_width">width</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_grid.html#property">Property</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_grid.html#property_activecell">activeCell</a></li>
+        <li class="config"><a href="sigma_grid.html#property_activecolumn">activeColumn</a></li>
+        <li class="config"><a href="sigma_grid.html#property_activerecord">activeRecord</a></li>
+        <li class="config"><a href="sigma_grid.html#property_activerow">activeRow</a></li>
+        <li class="config"><a href="sigma_grid.html#property_allowcustomskin">allowCustomSkin</a></li>
+        <li class="config"><a href="sigma_grid.html#property_allowfreeze">allowFreeze</a></li>
+        <li class="config"><a href="sigma_grid.html#property_allowgroup">allowGroup</a></li>
+        <li class="config"><a href="sigma_grid.html#property_allowhide">allowHide</a></li>
+        <li class="config"><a href="sigma_grid.html#property_clickstartedit">clickStartEdit</a></li>
+        <li class="config"><a href="sigma_grid.html#property_columnmap">columnMap</a></li>
+        <li class="config"><a href="sigma_grid.html#property_columns">columns</a></li>
+        <li class="config"><a href="sigma_grid.html#property_defaultrecord">defaultRecord</a></li>
+        <li class="config"><a href="sigma_grid.html#property_lightoverrow">lightOverRow</a></li>
+        <li class="config"><a href="sigma_grid.html#property_loadurl">loadURL</a></li>
+        <li class="config"><a href="sigma_grid.html#property_minheight">minHeight</a></li>
+        <li class="config"><a href="sigma_grid.html#property_minwidth">minWidth</a></li>
+        <li class="config"><a href="sigma_grid.html#property_reloadaftersave">reloadAfterSave</a></li>
+        <li class="config"><a href="sigma_grid.html#property_remotefilter">remoteFilter</a></li>
+        <li class="config"><a href="sigma_grid.html#property_remotepaging">remotePaging</a></li>
+        <li class="config"><a href="sigma_grid.html#property_remotesort">remoteSort</a></li>
+        <li class="config"><a href="sigma_grid.html#property_resizable">resizable</a></li>
+        <li class="config"><a href="sigma_grid.html#property_saveurl">saveURL</a></li>
+        <li class="config"><a href="sigma_grid.html#property_selectedrows">selectedRows</a></li>
+        <li class="config"><a href="sigma_grid.html#property_selectrowbycheck">selectRowByCheck</a></li>
+        <li class="config"><a href="sigma_grid.html#property_submitupdatedfields">submitUpdatedFields</a></li>
+        <li class="config"><a href="sigma_grid.html#property_transparentmask">transparentMask</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_grid.html#method">Method</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_grid.html#addparameters">addParameters</a></li>
+        <li class="config"><a href="sigma_grid.html#addrow">addRow</a></li>
+        <li class="config"><a href="sigma_grid.html#applyfilter">applyFilter</a></li>
+        <li class="config"><a href="sigma_grid.html#checkrow">checkRow</a></li>
+        <li class="config"><a href="sigma_grid.html#cleancontent">cleanContent</a></li>
+        <li class="config"><a href="sigma_grid.html#cleanparameters">cleanParameters</a></li>
+        <li class="config"><a href="sigma_grid.html#closegridmenu">closeGridMenu</a></li>
+        <li class="config"><a href="sigma_grid.html#deleterow">deleteRow</a></li>
+        <li class="config"><a href="sigma_grid.html#editcell">editCell</a></li>
+        <li class="config"><a href="sigma_grid.html#endedit">endEdit</a></li>
+        <li class="config"><a href="sigma_grid.html#exportgrid">exportGrid</a></li>
+        <li class="config"><a href="sigma_grid.html#focuscell">focusCell</a></li>
+        <li class="config"><a href="sigma_grid.html#foreachrow">forEachRow</a></li>
+        <li class="config"><a href="sigma_grid.html#getcell">getCell</a></li>
+        <li class="config"><a href="sigma_grid.html#getcellvalue">getCellValue</a></li>
+        <li class="config"><a href="sigma_grid.html#getcolumn">getColumn</a></li>
+        <li class="config"><a href="sigma_grid.html#getdeletedrecords">getDeletedRecords</a></li>
+        <li class="config"><a href="sigma_grid.html#getdimension">getDimension</a></li>
+        <li class="config"><a href="sigma_grid.html#getdisplaycolumns">getDisplayColumns</a></li>
+        <li class="config"><a href="sigma_grid.html#geteventtargets">getEventTargets</a></li>
+        <li class="config"><a href="sigma_grid.html#getfilterinfo">getFilterInfo</a></li>
+        <li class="config"><a href="sigma_grid.html#getinsertedrecords">getInsertedRecords</a></li>
+        <li class="config"><a href="sigma_grid.html#getpageinfo">getPageInfo</a></li>
+        <li class="config"><a href="sigma_grid.html#getrecord">getRecord</a></li>
+        <li class="config"><a href="sigma_grid.html#getselectedrecords">getSelectedRecords</a></li>
+        <li class="config"><a href="sigma_grid.html#getskin">getSkin</a></li>
+        <li class="config"><a href="sigma_grid.html#getupdatedrecords">getUpdatedRecords</a></li>
+        <li class="config"><a href="sigma_grid.html#gotopage">gotoPage</a></li>
+        <li class="config"><a href="sigma_grid.html#hidecelltooltip">hideCellToolTip</a></li>
+        <li class="config"><a href="sigma_grid.html#hidedialog">hideDialog</a></li>
+        <li class="config"><a href="sigma_grid.html#hidemask">hideMask</a></li>
+        <li class="config"><a href="sigma_grid.html#hidewaiting">hideWaiting</a></li>
+        <li class="config"><a href="sigma_grid.html#insert">insert</a></li>
+        <li class="config"><a href="sigma_grid.html#movecolumn">moveColumn</a></li>
+        <li class="config"><a href="sigma_grid.html#printgrid">printGrid</a></li>
+        <li class="config"><a href="sigma_grid.html#refresh">refresh</a></li>
+        <li class="config"><a href="sigma_grid.html#refreshrow">refreshRow</a></li>
+        <li class="config"><a href="sigma_grid.html#reload">reload</a></li>
+        <li class="config"><a href="sigma_grid.html#render">render</a></li>
+        <li class="config"><a href="sigma_grid.html#save">save</a></li>
+        <li class="config"><a href="sigma_grid.html#selectrow">selectRow</a></li>
+        <li class="config"><a href="sigma_grid.html#setcellvalue">setCellValue</a></li>
+        <li class="config"><a href="sigma_grid.html#setcontent">setContent</a></li>
+        <li class="config"><a href="sigma_grid.html#setdimension">setDimension</a></li>
+        <li class="config"><a href="sigma_grid.html#setfilterinfo">setFilterInfo</a></li>
+        <li class="config"><a href="sigma_grid.html#setpageinfo">setPageInfo</a></li>
+        <li class="config"><a href="sigma_grid.html#setskin">setSkin</a></li>
+        <li class="config"><a href="sigma_grid.html#showcelltooltip">showCellToolTip</a></li>
+        <li class="config"><a href="sigma_grid.html#showdialog">showDialog</a></li>
+        <li class="config"><a href="sigma_grid.html#showmask">showMask</a></li>
+        <li class="config"><a href="sigma_grid.html#showwaiting">showWaiting</a></li>
+        <li class="config"><a href="sigma_grid.html#sortgrid">sortGrid</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_grid.html#event">Event</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_grid.html#aftercolumnresize">afterColumnResize</a></li>
+        <li class="config"><a href="sigma_grid.html#afteredit">afterEdit</a></li>
+        <li class="config"><a href="sigma_grid.html#afterrowselect">afterRowSelect</a></li>
+        <li class="config"><a href="sigma_grid.html#beforecolumnmove">beforeColumnMove</a></li>
+        <li class="config"><a href="sigma_grid.html#beforedelete">beforeDelete</a></li>
+        <li class="config"><a href="sigma_grid.html#beforeedit">beforeEdit</a></li>
+        <li class="config"><a href="sigma_grid.html#beforeexport">beforeExport</a></li>
+        <li class="config"><a href="sigma_grid.html#beforeinsert">beforeInsert</a></li>
+        <li class="config"><a href="sigma_grid.html#beforeload">beforeLoad</a></li>
+        <li class="config"><a href="sigma_grid.html#beforerowselect">beforeRowSelect</a></li>
+        <li class="config"><a href="sigma_grid.html#beforesave">beforeSave</a></li>
+        <li class="config"><a href="sigma_grid.html#beforeupdate">beforeUpdate</a></li>
+        <li class="config"><a href="sigma_grid.html#customrowattribute">customRowAttribute</a></li>
+        <li class="config"><a href="sigma_grid.html#exportfailure">exportFailure</a></li>
+        <li class="config"><a href="sigma_grid.html#loadfailure">loadFailure</a></li>
+        <li class="config"><a href="sigma_grid.html#loadresponsehandler">loadResponseHandler</a></li>
+        <li class="config"><a href="sigma_grid.html#oncellclick">onCellClick</a></li>
+        <li class="config"><a href="sigma_grid.html#oncelldblclick">onCellDblClick</a></li>
+        <li class="config"><a href="sigma_grid.html#oncomplete">onComplete</a></li>
+        <li class="config"><a href="sigma_grid.html#oncontextmenu">onContextMenu</a></li>
+        <li class="config"><a href="sigma_grid.html#onheadclick">onHeadClick</a></li>
+        <li class="config"><a href="sigma_grid.html#onkeydown">onKeyDown</a></li>
+        <li class="config"><a href="sigma_grid.html#onmousemove">onMouseMove</a></li>
+        <li class="config"><a href="sigma_grid.html#onmouseout">onMouseOut</a></li>
+        <li class="config"><a href="sigma_grid.html#onmouseover">onMouseOver</a></li>
+        <li class="config"><a href="sigma_grid.html#onresize">onResize</a></li>
+        <li class="config"><a href="sigma_grid.html#onrowcheck">onRowCheck</a></li>
+        <li class="config"><a href="sigma_grid.html#onrowclick">onRowClick</a></li>
+        <li class="config"><a href="sigma_grid.html#onrowdblclick">onRowDblClick</a></li>
+        <li class="config"><a href="sigma_grid.html#savefailure">saveFailure</a></li>
+        <li class="config"><a href="sigma_grid.html#saveresponsehandler">saveResponseHandler</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_column.html">Sigma.Column</a>
+  <ul>
+    <li class="group"><a href="sigma_column.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_column.html#config_align">align</a></li>
+        <li class="config"><a href="sigma_column.html#config_chartcolor">chartColor</a></li>
+        <li class="config"><a href="sigma_column.html#config_editable">editable</a></li>
+        <li class="config"><a href="sigma_column.html#config_editor">editor</a></li>
+        <li class="config"><a href="sigma_column.html#config_emptytext">emptyText</a></li>
+        <li class="config"><a href="sigma_column.html#config_filterable">filterable</a></li>
+        <li class="config"><a href="sigma_column.html#config_freezeable">freezeable</a></li>
+        <li class="config"><a href="sigma_column.html#config_headalign">headAlign</a></li>
+        <li class="config"><a href="sigma_column.html#config_header">header</a></li>
+        <li class="config"><a href="sigma_column.html#config_hideable">hideable</a></li>
+        <li class="config"><a href="sigma_column.html#config_id">id</a></li>
+        <li class="config"><a href="sigma_column.html#config_inchart">inChart</a></li>
+        <li class="config"><a href="sigma_column.html#config_minwidth">minWidth</a></li>
+        <li class="config"><a href="sigma_column.html#config_moveable">moveable</a></li>
+        <li class="config"><a href="sigma_column.html#config_printable">printable</a></li>
+        <li class="config"><a href="sigma_column.html#config_resizable">resizable</a></li>
+        <li class="config"><a href="sigma_column.html#config_sortable">sortable</a></li>
+        <li class="config"><a href="sigma_column.html#config_sortorder">sortOrder</a></li>
+        <li class="config"><a href="sigma_column.html#config_styleclass">styleClass</a></li>
+        <li class="config"><a href="sigma_column.html#config_tooltip">toolTip</a></li>
+        <li class="config"><a href="sigma_column.html#config_width">width</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_column.html#property">Property</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_column.html#property_editable">editable</a></li>
+        <li class="config"><a href="sigma_column.html#property_filterable">filterable</a></li>
+        <li class="config"><a href="sigma_column.html#property_freezeable">freezeable</a></li>
+        <li class="config"><a href="sigma_column.html#property_frozen">frozen</a></li>
+        <li class="config"><a href="sigma_column.html#property_getsortvalue">getSortValue</a></li>
+        <li class="config"><a href="sigma_column.html#property_hidden">hidden</a></li>
+        <li class="config"><a href="sigma_column.html#property_hideable">hideable</a></li>
+        <li class="config"><a href="sigma_column.html#property_moveable">moveable</a></li>
+        <li class="config"><a href="sigma_column.html#property_renderer">renderer</a></li>
+        <li class="config"><a href="sigma_column.html#property_resizable">resizable</a></li>
+        <li class="config"><a href="sigma_column.html#property_sortable">sortable</a></li>
+        <li class="config"><a href="sigma_column.html#property_sortfn">sortFn</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_column.html#method">Method</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_column.html#freeze">freeze</a></li>
+        <li class="config"><a href="sigma_column.html#getcolumnindex">getColumnIndex</a></li>
+        <li class="config"><a href="sigma_column.html#group">group</a></li>
+        <li class="config"><a href="sigma_column.html#hide">hide</a></li>
+        <li class="config"><a href="sigma_column.html#setheader">setHeader</a></li>
+        <li class="config"><a href="sigma_column.html#setwidth">setWidth</a></li>
+        <li class="config"><a href="sigma_column.html#show">show</a></li>
+        <li class="config"><a href="sigma_column.html#toggle">toggle</a></li>
+        <li class="config"><a href="sigma_column.html#unfreeze">unfreeze</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_editor.html">Sigma.Editor</a>
+  <ul>
+    <li class="group"><a href="sigma_editor.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_editor.html#config_defaulttext">defaultText</a></li>
+        <li class="config"><a href="sigma_editor.html#config_type">type</a></li>
+        <li class="config"><a href="sigma_editor.html#config_validator">validator</a></li>
+        <li class="config"><a href="sigma_editor.html#config_validrule">validRule</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_pageinfo.html">Sigma.PageInfo</a>
+  <ul>
+    <li class="group"><a href="sigma_pageinfo.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_pageinfo.html#config_endrownum">endRowNum</a></li>
+        <li class="config"><a href="sigma_pageinfo.html#config_pagenum">pageNum</a></li>
+        <li class="config"><a href="sigma_pageinfo.html#config_pagesize">pageSize</a></li>
+        <li class="config"><a href="sigma_pageinfo.html#config_startrownum">startRowNum</a></li>
+        <li class="config"><a href="sigma_pageinfo.html#config_totalpagenum">totalPageNum</a></li>
+        <li class="config"><a href="sigma_pageinfo.html#config_totalrownum">totalRowNum</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_sortinfo.html">Sigma.SortInfo</a>
+  <ul>
+    <li class="group"><a href="sigma_sortinfo.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_sortinfo.html#config_columnid">columnId</a></li>
+        <li class="config"><a href="sigma_sortinfo.html#config_fieldname">fieldName</a></li>
+        <li class="config"><a href="sigma_sortinfo.html#config_sortstate">sortstate</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_filterinfo.html">Sigma.FilterInfo</a>
+  <ul>
+    <li class="group"><a href="sigma_filterinfo.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_filterinfo.html#config_fieldname">fieldName</a></li>
+        <li class="config"><a href="sigma_filterinfo.html#config_logic">logic</a></li>
+        <li class="config"><a href="sigma_filterinfo.html#config_value">value</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_datafield.html">Sigma.DataField</a>
+  <ul>
+    <li class="group"><a href="sigma_datafield.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_datafield.html#config_name">name</a></li>
+        <li class="config"><a href="sigma_datafield.html#config_type">type</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_datafield.html#event">Event</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_datafield.html#initvalue">initValue</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_dataset.html">Sigma.DataSet</a>
+  <ul>
+    <li class="group"><a href="sigma_dataset.html#config">Config</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_dataset.html#config_data">data</a></li>
+        <li class="config"><a href="sigma_dataset.html#config_fields">fields</a></li>
+        <li class="config"><a href="sigma_dataset.html#config_recordtype">recordType</a></li>
+        <li class="config"><a href="sigma_dataset.html#config_uniquefield">uniqueField</a></li>
+      </ul>
+    </li>
+    <li class="group"><a href="sigma_dataset.html#method">Method</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_dataset.html#getfieldsnum">getFieldsNum</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="class"><a href="sigma_toolfactroy.html">Sigma.ToolFactroy</a>
+  <ul>
+    <li class="group"><a href="sigma_toolfactroy.html#method">Method</a>
+      <ul style="display:none;">
+        <li class="config"><a href="sigma_toolfactroy.html#register">register</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</ul>
+</div>
+<div class="content">
+  <a name="config"></a><h2>Config</h2>
+<table class="items-list"><tr><td><a href="sigma_sortinfo.html#config_columnid">columnId</a></td><td><a href="sigma_sortinfo.html#config_fieldname">fieldName</a></td><td><a href="sigma_sortinfo.html#config_sortstate">sortstate</a></td></table>  <div class="list">
+    <a name="config_columnid"></a> 
+    <h3>columnId</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; Column Id.</p>
+    <a name="config_fieldname"></a> 
+    <h3>fieldName</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; Specify name of field which data is sorted by.</p>
+    <a name="config_sortstate"></a> 
+    <h3>sortstate</h3>
+    <p class="padded"><span class="datatype">String</span> &nbsp; Could be "asc" or "desc".</p>
+  </div>
+</div>
+
+
+    </body>
+</html>

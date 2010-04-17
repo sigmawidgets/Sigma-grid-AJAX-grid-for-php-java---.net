@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+<html><head><link rel='stylesheet' type='text/css' href='style.css' />
+<script src='highlight/jssc3.js' type='text/javascript'></script>
+<link href='highlight/style.css' rel='stylesheet' type='text/css' />
+</head><body>
+<h1><img src='img/work.jpg' style='vertical-align: bottom;margin-right:4px;'>DataExchange</h1>
+<div class='linb-custom-block'>
+<h2><img src="img/bracket.gif">Data Schema</h2>
+<div><span class='linb-func-name'><a name="Loading">Loading Data</a></span><br><h3>This section defines json format when grid is loading data from server side.</h3><h4>Json format of data from grid to server side.</h4><br>Here is a sample of Json string grid posts to server.<br><textarea name="code" class="javascript">{
+  "action":"load",
+  "pageInfo":{
+    "pageSize":10,
+    "pageNum":2,
+    "totalRowNum":31,
+    "totalPageNum":4,
+    "startRowNum":11,
+    "endRowNum":20
+  },
+  "sortInfo":[{
+    "columnId":"country",
+    "fieldName":"country",
+    "sortstate":"asc"
+    }],
+  "filterInfo":[{
+    "columnId":"order_no",
+    "fieldName":"order_no",
+    "logic":"equal",
+    "value":"12345"
+  }],
+  "parameters":{}
+}</textarea><h4>Notes</h4><br>action: String. Alway be "load".<br>pageInfo: See Sigma.Grid.PageInfo object.<br>sortInfo: See Sigma.Grid.SortInfo object.<br>filterInfo: See Sigma.Grid.FilterInfo object.<br>parameters: Parameters user adds. See <a href="sigma_grid.html#addParameters">Sigma.Grid.addParameters</a><br><h4>Json format of data from server side to grid.</h4><br>Sample <br><textarea name="code" class="javascript">{
+  data:[
+    ["24","CA","Le","Caspar","62","94","53","88","2008-03-18 00:00:00"], 
+    ["25","SP","Ju","Joe","38","97","35","74","2008-07-31 00:00:00"],  
+    ["26","UK","Co","Thomas","55","58","62","46","2008-07-19 00:00:00"]
+  ],
+  pageInfo:{totalRowNum:31},
+  recordType : 'array'
+}</textarea><h4>Notes</h4><br>data: Data content.<br>pageInfo: See Sigma.Grid.PageInfo object.<br>recordType: Type of data. Could be "array" or "object".<br><br></div>
+<div><span class='linb-func-name'><a name="Saving">Saving Data</a></span><br><h3>This section defines json format when grid is saveing data to server side.</h3><h4>Json format of data from grid to server side.</h4><br>Sample<br><textarea name="code" class="javascript">{
+  action : 'save',
+  fieldsName : [..],
+  insertedRecords : [..],
+  updatedRecords : [..],
+  deletedRecords : [..],
+  recordType : "object"/"array",
+  parameters : {}
+}</textarea><h4>Notes</h4><br>action: String. Alway be "save".<br>fieldsName: Array. Fields name.<br>insertedRecords : Array of array/object. Records inserted by user.<br>updatedRecords : Array of array/object. Records updated by user.<br>deletedRecords : Array of array/object. Records deleted by user.<br>recordType: Type of insertedRecords, updatedRecords, deletedRecords. Could be "array" or "object".<br>parameters: Parameters user adds. See <a href="sigma_grid.html#addParameters">Sigma.Grid.addParameters</a> <br><h4>Json format of data from server side to grid.</h4><br>Sample<br><textarea name="code" class="javascript">{
+  success : true/false,
+  exception : "..."
+}</textarea><h4>Notes</h4><br>success: Bool. To specify whether CRUD operation is successful.<br>exception: Exception/error message.<br><br></div>
+</div>
+<script type='text/javascript'>
+jssc.colorAll("code");
+</script>
+</body></html>

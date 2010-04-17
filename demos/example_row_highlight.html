@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Highlight the active row - Sigma Ajax data grid control sample</title>
+<meta http-equiv="Content-Language" content="en-us" /> 
+<meta name="keywords" content="dhtml grid, AJAX grid, highlight row, active row" >
+<meta name="description" content="How to highlight the active row " >
+
+<script src="highlight/jssc3.js" type="text/javascript"></script>
+<link href="highlight/style.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css" media="all">@import "./css/doc_no_left.css";</style>
+<script src="../../../js/menu.js" type="text/javascript"></script>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="../grid/calendar/calendar-blue.css"  />
+<script type="text/javascript" src="../grid/calendar/calendar.js"></script>
+<script type="text/javascript" src="../grid/calendar/calendar-cn-utf8.js"></script>
+<script type="text/javascript" src="../grid/calendar/calendar-setup.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../grid/gt_grid.css" />
+<link rel="stylesheet" type="text/css" href="../grid/skin/vista/skinstyle.css" />
+<script type="text/javascript" src="./data/test_data.js"></script>
+<script type="text/javascript" src="../grid/gt_msg_en.js"></script>
+<script type="text/javascript" src="../grid/gt_const.js"></script>
+<script type="text/javascript" src="../grid/gt_grid_all.js"></script>
+<script type="text/javascript" src="../grid/flashchart/fusioncharts/FusionCharts.js"></script>
+
+    
+    
+<script type="text/javascript" >
+
+var grid_demo_id = "myGrid1" ;
+var grid_demo_id2 = "myGrid2" ;
+
+
+var dsOption= {
+
+	fields :[
+		{name : 'no'  },
+		{name : 'country'  },
+		{name : 'customer'  },
+		{name : 'employee'  },
+		{name : 'bill2005' ,type: 'float' },
+		{name : 'bill2006' ,type: 'float' },
+		{name : 'bill2007' ,type: 'float' },
+		{name : 'bill2008' ,type: 'float' },
+		{name : 'orderDate' ,type:'date'  }
+		
+	],
+
+	recordType : 'array',
+	data : __TEST_DATA__
+}
+
+
+
+var colsOption = [
+     {id: 'no' , header: "Order No" , width :60  },
+     {id: 'employee' , header: "Employee" , width :80  },
+	   {id: 'country' , header: "Country" , width :70  },
+	   {id: 'customer' , header: "Customer" , width :80  },
+	   {id: 'bill2005' , header: "2005" , width :60},
+	   {id: 'bill2006' , header: "2006" , width :60},
+	   {id: 'bill2007' , header: "2007" , width :60},
+	   {id: 'bill2008' , header: "2008" , width :60},
+	   {id: 'orderDate' , header: "Delivery Date" , width :100}
+       
+];
+
+var gridOption={
+  lightOverRow : true,
+  id : grid_demo_id,
+	width: "700",  //"100%", // 700,
+	height: "350",  //"100%", // 330,
+	container : 'gridbox', 
+	replaceContainer : true, 
+	dataset : dsOption ,
+	columns : colsOption,
+	toolbarPosition : null
+};
+
+var gridOption2={
+  lightOverRow : false,
+  id : grid_demo_id2,
+	width: "700",  //"100%", // 700,
+	height: "350",  //"100%", // 330,
+	container : 'gridbox2', 
+	replaceContainer : true, 
+	dataset : dsOption ,
+	columns : colsOption,
+	toolbarPosition : null
+};
+
+
+var mygrid=new Sigma.Grid( gridOption );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid) );
+
+var mygrid2=new Sigma.Grid( gridOption2 );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid2) );
+
+//////////////////////////////////////////////////////////
+
+
+
+
+
+
+</script>
+</head>
+<body>
+
+<div id="page-container">
+  <div id="main-nav">
+            <div id="logo" style="margin: 10px">
+                                        <a href="http://www.sigmawidgets.com/">
+                                            <img border="0"  src="images/logo.gif"/></a></div>
+                                    <div id="menu">
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/">Home</a></div>
+                                        <div class="menuLink" id="menu1">
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/">Products </a>
+                                        </div>
+                                        <div class="menuLink" id="menu2">
+                                            <a href="http://www.sigmawidgets.com/company/offshore.html">Company &amp;Services</a>
+                                        </div>
+                                        <div class="menuLink" id="menu3" >
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/demos/"><font color="ff8c00">Live Demo</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/download.html"><font color="ff8c00">Download</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/forum"><font color="ff8c00">Forum</font></a>
+                                        </div>
+                                    </div>
+</div>
+
+   
+  <div id="header">
+  <h1>
+      Product - Sigma Grid - Sample </h1>
+  </div>
+
+  <div id="content">
+    
+	  <h2>Highlight active row </h2>
+      <p>It is not easy to locate a row  if a grid contains too many columns. To gain visual experience, Sigma grid provides the functionality to highlight the row by adding a red underline.      Move your mouse over and see how this underline can  help you view the grid promptly and clearly. 
+      
+      </p>
+      <div id="bigbox" style="margin:15px;display:!none;">
+      <div id="gridbox" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:200px;width:700px;" ></div>
+    </div>
+
+    
+    
+    <p>This feature could be disabled. </p>
+      
+      <div id="bigbox2" style="margin:15px;display:!none;">
+      <div id="gridbox2" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:200px;width:700px;" ></div>
+    </div>
+      <h2>Related Links</h2>
+      <p><a href="demo_list.html">Demos List</a> - <a href="example_row_height.html">Change row height</a> - <a href="example_row_number.html">Row number</a> - <a href="example_row_stripe.html">Row striple</a></p>
+  </div>
+  
+  
+
+  <div id="footer">All contents are (c) Copyright 2005 - 2008, Sigma Software Inc. All rights Reserved</div>
+</div>
+
+</body>
+</html>

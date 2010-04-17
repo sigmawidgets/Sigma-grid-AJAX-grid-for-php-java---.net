@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+<html>
+<head>
+    <link rel='stylesheet' type='text/css' href='style.css' />
+
+    <script src='highlight/jssc3.js' type='text/javascript'></script>
+
+    <link href='highlight/style.css' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <h1>
+        Export Sigma Grid Data Programming Tutorial</h1>
+    <div class='linb-custom-block'>
+        <h2>
+            Introduction</h2>
+        <div>
+            Sigma grid starts to support export data to file from version 2.2. The following
+            features have been implemented.
+            <ul>
+                <li>Export to PDF </li>
+                <li>Export to XML </li>
+                <li>Export to Excel </li>
+                <li>Export to CSV</li>
+            </ul>
+            Sigma does much to make exporting data easy. As we know, Sigma grid is a pure client
+            solution,&nbsp; exporting task can't be fulfilled without help of server side. This
+            tutorial will teach you how to write simple code to do exporting. &nbsp;<br />
+            <br />
+        </div>
+        <h2>
+                Limitation Notes<br />
+            </h2>
+        <div>    
+            
+            1. Because of limitation of PDF lib, exported Pdf could look a little different
+            from what you see in browser (IE, Firefox, etc)
+            <br />
+            2. Because of limitation of PDF lib, Png files with alpha channel.<br />
+            3. Php code is taken as sample. If you are using some other languge, some changes
+            must be made accordingly.<br />
+       </div>
+       <h2>
+           Backend File Structure</h2>
+       <div>     There are file structure of exporting code. All the code are in /sigmagrid/export.<br />
+           <table width=100% border=1 cellpadding=0 cellspacing=0>
+               <tr>
+                   <td>
+                       File Location</td>
+                   <td>
+                       Description</td>
+                   <td>
+                       Required</td>
+               </tr>
+               <tr>
+                   <td>
+                       /export_php/html2pdf/</td>
+                   <td>
+                       For exporting grid data to PDF. Please download HTML2PDF library at http://html2pdf.fr/
+                       and unzip all stuff into this directory. Sigma grid package doesn't contain this
+                       library because of license issue.
+                   </td>
+                   <td>
+                       Y</td>
+               </tr>
+               <tr>
+                   <td>
+                       /export_php/ExcelExport.php</td>
+                   <td>
+                       For exporting grid data to Excel.</td>
+                   <td>
+                       Y</td>
+               </tr>
+               <tr>
+                   <td>
+                       /export/export_php/GridServerHandler.php</td>
+                   <td>
+                       Adapter between grid and exporting modules.</td>
+                   <td>
+                       Y</td>
+               </tr>
+               <tr>
+                   <td style="width: 47px; height: 20px;">
+                       /export_php/JSON.php</td>
+                   <td style="width: 100px; height: 20px;">
+                       JSON PHP implementation.</td>
+                   <td style="width: 100px; height: 20px;">
+                       Y</td>
+               </tr>
+               <tr>
+                   <td>
+                       /export/export_php/testDAO.php</td>
+                   <td>
+                       Sample code for data feed.</td>
+                   <td>
+                   </td>
+               </tr>
+               <tr>
+                   <td>
+                       /export/export_php/testList.php</td>
+                   <td>
+                       Sample code for exporting dispatcher.</td>
+                   <td>
+                   </td>
+               </tr>
+           </table>
+           &nbsp;<br />
+           The first four items are required for exporting work. Don't change their names or
+           structures. Just copy them into your project. The last two files, say testDAO.php
+           and testList.php, are sample code for demonstration and code templates.<br />
+           <br />
+           </div>
+           <h2> Coding Step By Step</h2>
+           <div>
+               In this section, I will tell you how to integrate database code with the grid.<br />
+               <h3>
+                   Create Data Table</h3>
+               1. &nbsp;We have created a Sql file for you to follow the tutorial. Create a database,
+               say gridexport, in you local Mysql server.
+               <br />
+               2.&nbsp; Run /export/export_php/gridexport.sql in mysql console.
+               <br />
+               <h3>
+                   Write Data Feed File</h3>
+               1. Copy testDAO.php to studentDAO.php in the same directory.
+               <br />
+               2. With studentDAO.php, developer needs to implement a function, say getStudentData.
+               This function should return an array of JSON objects presenting grid data.<br />
+               <br>
+            <textarea name="code" class="javascript"><?php
+//Developers need to implement this following function.
+//Typically, it should connect to the database and return two 2d array.
+function getStudentData(){
+//Connect to database
+mysql_connect("localhost","root","") or
+die("Could not connect: " . mysql_error());
+mysql_select_db("gridexport") or
+die("Could not select database: " . mysql_error());
+//Execute a sql query.
+$sql = "select * from student";
+$handle = mysql_query($sql);
+//This is a 2d array, every element of which contains an array.
+$retArray = array();
+while ($row = mysql_fetch_object($handle)) {
+$retArray[] = $row;
+}
+//return this 2d array
+return $retArray;
+}
+?></textarea><br />
+               <br />
+               I don't have two much to say about these code. Most of them are for database connection
+               and data retrieving. The only thing I would like to highlight is the function should
+               return a an array of JSON objects. You could use mysql_fetch_object in a loop to
+               gain such array.<br />
+               <br />
+               <h3>
+                   Write Export Handler File</h3>
+               Copy testList.php to studentList.php. Open studentList.php, you will see the following
+               lines.<br />
+            <textarea name="code" class="javascript"><?php
+ //This is sigma grid exporting handler
+ require_once('GridServerHandler.php');
+ //This is a php file for data feeding
+ require_once('testDAO.php');
+ //To create grid exporting instant.
+ $gridHandler = new GridServerHandler();
+ $type = getParameter('exportType');
+ if ( $type == 'pdf' ){
+ // to use html2pdf to export pdf
+ // param1 : Orientation. 'P' for Portrait , 'L' for Landscape
+ // param2 : Paper size. Could be A3, A4, A5, LETTER, LEGAL
+ // param3 : Relative picture path to this php file
+ $gridHandler->exportPDF('P' ,'A4', '../');
+ }else {
+ //to get the data from data base. //
+ $data1 = getTestData( 25 );
+ if ( $type == 'xml' ){
+ //exporting to xml
+ $gridHandler->exportXML( $data1);
+ }else if ( $type == 'xls' ){
+ //exporting to xls
+ $gridHandler->exportXLS( $data1);
+ }else if ( $type == 'csv' ){
+ //exporting to csv
+ $gridHandler->exportCSV( $data1);
+ }else{
+ //for grid presentation
+ $gridHandler->setData($data1);
+ $gridHandler->setTotalRowNum(count($data1));
+ $gridHandler->printLoadResponseText();
+ }
+ }
+ ?></textarea><br />
+               Generally, we have two places to change.
+               <br />
+               Firstly, we need to include the data feed file we did just now.
+               <br />
+               <textarea name="code" class="javascript">require_once('studentDAO.php');</textarea>
+               <br />
+               Secondly, we need to change line 17 to make sure that we get the right data from
+               database.&nbsp;<br />
+               <textarea name="code" class="javascript">$data1 = getStudentData ( );</textarea>
+               <br />
+               Now, we have all the backend files prepared. It's quit easy, isn't it?<br />
+               <h3>
+                   Write Sigma Grid File</h3>
+               Write Sigma Grid File I suppose you have some background of how to write Javascript
+               for a live grid without server side data. If you don't, you could see www.simgawidgets.com/forum
+               for more client side knowledge. I would like to highlight three properties of the
+               grid. If you open /export/export_php/index.html, you will see following lines.<br>
+               <textarea name="code" class="javascript">var gridConfig={
+...
+loadURL : './export_php/testList.php',
+exportURL : './export_php/testList.php?export=true',
+exportFileName : 'test_export_doc',
+}</textarea>
+               <br />
+loadURL - The URL for grid to show within the grid.
+               <br />
+exportURL - The URL for grid to export data.
+               <br />
+exportFileName - The default file name of the exported xml/pdf/cvs/excel.
+For our student sample, it should go like this<br />
+<textarea name="code" class="javascript"> var gridConfig={
+...
+loadURL : './export_php/studentList.php',
+exportURL : './export_php/studentList.php?export=true',
+exportFileName : 'file_name_you_want',
+}</textarea>
+That's all for the simple tutorial. Thank you for your time.
+        </div>
+        
+    </div>
+
+    <script type='text/javascript'>
+jssc.colorAll("code");
+    </script>
+
+</body>
+</html>

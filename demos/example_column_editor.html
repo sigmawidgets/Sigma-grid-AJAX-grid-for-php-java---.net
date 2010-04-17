@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<title>Built-in column editor - Sigma Ajax data grid control sample</title>
+<meta http-equiv="Content-Language" content="en-us" /> 
+<meta name="keywords" content="dhtml grid, AJAX grid, grid customization, cell text editor, cell dropdown list, cell calendar " >
+<meta name="description" content="How to specify editor for columns" >
+
+<script src="highlight/jssc3.js" type="text/javascript"></script>
+<link href="highlight/style.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css" media="all">@import "./css/doc_no_left.css";</style>
+<script src="../../../js/menu.js" type="text/javascript"></script>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="../grid/calendar/calendar-blue.css"  />
+<script type="text/javascript" src="../grid/calendar/calendar.js"></script>
+<script type="text/javascript" src="../grid/calendar/calendar-en.js"></script>
+<script type="text/javascript" src="../grid/calendar/calendar-setup.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../grid/gt_grid.css" />
+<link rel="stylesheet" type="text/css" href="../grid/skin/vista/skinstyle.css" />
+<script type="text/javascript" src="./data/test_data.js"></script>
+<script type="text/javascript" src="../grid/gt_msg_en.js"></script>
+<script type="text/javascript" src="../grid/gt_const.js"></script>
+<script type="text/javascript" src="../grid/gt_grid_all.js"></script>
+<script type="text/javascript" src="../grid/flashchart/fusioncharts/FusionCharts.js"></script>
+    
+<script type="text/javascript" >
+
+var grid_demo_id = "myGrid1" ;
+
+
+var dsOption= {
+
+	fields :[
+		{name : 'no'  },
+		{name : 'country'  },
+		{name : 'customer'  },
+		{name : 'employee'  },
+		{name : 'bill2005' ,type: 'float' },
+		{name : 'bill2006' ,type: 'float' },
+		{name : 'bill2007' ,type: 'float' },
+		{name : 'bill2008' ,type: 'float' },
+		{name : 'orderDate' ,type:'date'  }
+		
+	],
+
+	recordType : 'array',
+	data : __TEST_DATA__
+}
+
+// Below function Add by me 
+function column_render(value ,record,columnObj,grid,colNo,rowNo){
+		 var options = {'1': 'US','2':'FR', '3':'BR'};
+		 var ret = options[value];
+		 if(ret==null){
+       ret = value;
+     }
+		 return ret;
+}
+// My function over
+
+// Below function you send us in mail
+/*column_render:function(){
+ var options = {'1': 'US','2':'FR', '3':'BR'};
+ return options[cell-value];
+}
+*/
+
+// Your function over
+var colsOption = [
+     {id: 'no' , header: "Text Box" , width :60, editor: {  type :"text"  } },
+     {id: 'employee', header: "Text Box" , width :80, editor: {  type :"text"  }  },
+	   {id: 'country', header: "Drop Down" , width :70,
+     editor : { type :"select" ,options : {'1': 'US' ,'2':'FR', '3':'BR'} 
+     ,defaultText : 'US' },
+	 // Below function call by us
+	 renderer:column_render },
+	   {id: 'customer' , header: "Long Text" , width :150,editor: {type :"textarea", width:'150px',height:'100px'  }  },
+	   {id: 'orderDate' , header: "Date Picker" , width :100, editor: {type :"date"}},
+	   {id: 'bill2005' , header: "Readonly" , width :60},
+	   {id: 'bill2006' , header: "Readonly" , width :60}
+       
+];
+
+var gridOption={
+	id : grid_demo_id,
+	width: "700",  //"100%", // 700,
+	height: "350",  //"100%", // 330,
+	container : 'gridbox', 
+	replaceContainer : true, 
+	
+	dataset : dsOption ,
+	columns : colsOption,
+	toolbarPosition : null
+};
+
+
+var mygrid=new Sigma.Grid( gridOption );
+Sigma.Util.onLoad( Sigma.Grid.render(mygrid) );
+
+//////////////////////////////////////////////////////////
+
+
+
+
+
+
+</script>
+</head>
+<body>
+
+<div id="page-container">
+  <div id="main-nav">
+            <div id="logo" style="margin: 10px">
+                                        <a href="http://www.sigmawidgets.com/">
+                                            <img border="0"  src="images/logo.gif"/></a></div>
+                                    <div id="menu">
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/">Home</a></div>
+                                        <div class="menuLink" id="menu1">
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/">Products </a>
+                                        </div>
+                                        <div class="menuLink" id="menu2">
+                                            <a href="http://www.sigmawidgets.com/company/offshore.html">Company &amp;Services</a>
+                                        </div>
+                                        <div class="menuLink" id="menu3" >
+                                            <a href="http://www.sigmawidgets.com/products/sigma_grid2/demos/"><font color="ff8c00">Live Demo</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/download.html"><font color="ff8c00">Download</font></a>
+                                        </div>
+                                        <div class="menuLinkHome">
+                                            <a href="http://www.sigmawidgets.com/forum"><font color="ff8c00">Forum</font></a>
+                                        </div>
+                                    </div>
+</div>
+
+   
+  <div id="header">
+  <h1>
+      Product - Sigma Grid - Sample</h1>
+  </div>
+
+  <div id="content">
+    
+	  <h2>Column editor</h2>
+      <p>
+          Sigma grid allow end user to modify data in a grid and post the changes back to
+          the database.
+          
+          <br> With the following sample, you can</p>
+      <ul>
+      <li>Start to edit a cell by clicking on it with mouse </li>
+          <li>Press tab key to complete your edit and go to next column.</li>
+          <li>Add or remove rows dynamically by clicking plus or minus on toolbar. </li>
+      </ul>
+    <div id="bigbox" style="margin:15px;display:!none;">
+      <div id="gridbox" style="border:0px solid #cccccc;background-color:#f3f3f3;padding:5px;height:200px;width:700px;" ></div>
+    </div>
+    <p>If you try the demo above, probably you will notice that each column has its own
+        editor. Some cells have text box for typing, some cells have drop-down list which
+        you can choose one option from, and a date picker pops up for date cells. 
+    </p>
+    <p> Developer can also specify some cells to be editable or read-only. Maybe you
+    have noticed that bills of 2005,2005 are read-only.</p>
+    <p><textarea name="code" class="javascript">var colsOption = [
+     {id: 'no' , header: "Order No" , width :60, editor: {  type :"text"  } },
+     {id: 'employee', header: "Employee" , width :80, editor: {  type :"text"  }  },
+	   {id: 'country', header: "Country" , width :70,
+     editor : { type :"select" ,options : {'US': 'US' ,'FR':'FR', 'BR':'BR'} 
+     ,defaultText : 'US' }  },
+	   {id: 'customer' , header: "Customer" , width :80,editor: {type :"text"  }  },
+	   {id: 'bill2005' , header: "2005" , width :60},
+	   {id: 'bill2006' , header: "2006" , width :60},
+	   {id: 'bill2007' , header: "2007" , width :60, editor: {  type :"text"  }},
+	   {id: 'bill2008' , header: "2008" , width :60, editor: {  type :"text"  }},
+	   {id: 'orderDate' , header: "Delivery Date" , width :100, editor: {type :"date"}}
+       
+];</textarea></p>
+    <h2>Related Links</h2>
+    <p><a href="demo_list.html">Demos List</a> - <a href="example_column_customize_editor.html">Customized cell editor</a></p>
+  </div>
+  
+  
+
+  <div id="footer">All contents are (c) Copyright 2005 - 2008, Sigma Software Inc. All rights Reserved</div>
+</div>
+<script type="text/javascript">
+jssc.colorAll("code");
+</script>
+</body>
+</html>

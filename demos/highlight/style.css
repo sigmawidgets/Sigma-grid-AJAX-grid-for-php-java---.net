@@ -1,0 +1,89 @@
+body {
+padding: 5px;
+margin: 5px;
+background: #fff;
+font: 10pt;
+color: #333;
+}
+.textarea {
+width: 95%;
+height: 300px;
+border: 0px;
+background: #fff;
+overflow: hidden;
+font: 10pt "Courier New",Courier;
+background: #fcfcfc;
+}
+.jssc {
+font: 10pt "Courier New";
+border: 1px solid #ccc;
+background-color: #f3f3f3;
+padding-top: 1px;
+padding-right: 2px;
+padding-bottom: 1px;
+padding-left: 5px;
+margin: 5px 2px 10px 2px;
+overflow: auto;
+width:95%;
+}
+.jssccodetitle {
+font: 9pt Verdana;
+margin: 0px 0px 5px 40px;
+font-weight: bold;
+color: #79a;
+}
+.jssccodetitle span{
+margin-Left: 30px;
+font-weight: normal;
+text-decoration: underline;
+cursor: pointer;
+}
+.jssc ul {
+margin: 0px;
+padding: 0px;
+list-style: decimal outside;
+background-color: #fff;
+border-left: 1px solid #abc;
+color: #999;
+}
+.jssc ul li div {
+color: #333;
+padding-left: 6px;
+}
+.jssc img {
+vertical-align: top;
+margin-right: 5px;
+width: 11px;
+height: 16px;
+}
+.jssc .alt {
+background-color: #fafafa;
+}
+.jssc .javascriptcomment, .jssc .javacomment, .jssc .ccomment, .jssc .cppcomment, .jssc .phpcomment, .jssc .csharpcomment, .jssc .vbcomment, .jssc .rubycomment, .jssc .delphicomment, .jssc .sqlcomment, .jssc .actionscriptstring, .jssc .htmlcomment, .jssc .xmlcomment, .jssc .pythoncomment {
+color: #090;
+}
+.jssc .javascriptstring, .jssc .javastring, .jssc .ckeywords, .jssc .cppkeywords, .jssc .phpkeywords, .jssc .csharpkeywords, .jssc .vbkeywords, .jssc .rubykeywords, .jssc .delphikeywords, .jssc .sqlkeywords, .jssc .actionscriptkeywords, .jssc .pythonkeywords, .jssc .csskeywords, .jssc .xmlvariables, .jssc .htmlnum, .jssc .xmlsign, .jssc .htmlsign {
+color: #33f;
+}
+.jssc .javascriptchar, .jssc .javachar, .jssc .cchar, .jssc .cppchar, .jssc .phpchar, .jssc .rubychar, .jssc .actionscriptchar {
+	color: #e9a;
+}
+.jssc .javascriptnum, .jssc .javanum, .jssc .cstring, .jssc .cppstring, .jssc .phpstring, .jssc .rubystring, .jssc .delphistring, .jssc .sqlstring, .jssc .actionscriptnum, .jssc .pythonstring, .jssc .pythonchar, .jssc .htmlvariables, .jssc .cssnum {
+color: #f33;
+}
+.jssc .javakeywords {
+color: #905;
+font-weight: bold;
+}
+.jssc .cnum, .jssc .cppnum, .jssc .phpnum, .jssc .csharpnum, .jssc .vbnum, .jssc .delphinum, .jssc .sqlnum, .jssc .rubynum, .jssc .pythonnum, .jssc .htmlkeywords, .jssc .xmlkeywords {
+color: #a36;
+}
+.jssc .javascriptkeywords, .jssc .phpvariables, .jssc .rubyvariables, .jssc .cssstring, .jssc .htmlchar, .jssc .xmlchar, .jssc .htmlstring, .jssc .xmlstring {
+color: #f6f;
+}
+.jssc .csharpstring, .jssc .vbstring, .jssc .rubysymbol {
+color: #900;
+}
+.jssc .csharpregion, .jssc .vbregion, .jssc .actionscriptcomment, .jssc .csscomment {
+color: #ccc;
+}
